@@ -7,15 +7,15 @@ const register = async (req, res) => {
 
     try {
         const existingUser = await prisma.user.findUnique({ where: { email } });
-        if (existingUser) res.status(400).json({ msg: 'User already exists' });
+        if (existingUser) return res.status(400).json({ msg: 'User already exists' });
 
         const hashedPassword = await bcrypt.hash(password, 10);
         const user = await prisma.user.create({
             data: { email, password: hashedPassword, name }
         })
-        res.status(201).json({ msg: 'User registered', userId: user.id });
+        return res.status(201).json({ msg: 'User registered', userId: user.id });
     } catch (error) {
-        res.status(500).json({ msg: 'Server error' });
+        return res.status(500).json({ msg: 'Server error' });
     }
 }
 
@@ -24,15 +24,15 @@ const login = async (req, res) => {
 
     try {
         const user = await prisma.user.findUnique({ where: { email } });
-        if (!user) res.status(400).json({ msg: 'Invalid email.' });
-
+        if (!user) return res.status(400).json({ msg: 'Invalid email.' });
+        
         const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) res.status(400).json({ msg: 'Password is incorrect' });
+        if (!isMatch) return res.status(400).json({ msg: 'Password is incorrect' });
 
-        const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: '24h' })
-        res.json({ token })
+        const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: '24h' });
+        return res.status(201).json({ token })
     } catch (error) {
-        res.status(500).json({ msg: 'Server error' });
+        return res.status(500).json({ msg: 'Server error' });
     }
 }
 
