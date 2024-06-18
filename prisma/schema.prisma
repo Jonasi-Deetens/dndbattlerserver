@@ -1,9 +1,6 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -14,10 +11,380 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  email     String   @unique
-  password  String
-  name      String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id         String      @id @default(uuid())
+  email      String      @unique
+  password   String
+  name       String?
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+  characters Character[]
+}
+
+model Character {
+  id                     Int                      @id @default(autoincrement())
+  name                   String
+  raceId                 Int
+  classId                Int
+  subraceId              Int?
+  background             String
+  alignment              String
+  primaryGoal            String
+  secondaryGoals         String[]
+  personalQuest          String?
+  relationships          Relationship[]
+  organizations          Organization[]
+  backstory              String
+  currentLocation        String
+  primarySkills          CharacterSkill[]
+  languages              CharacterLanguage[]
+  ideals                 String[]
+  bonds                  String[]
+  flaws                  String[]
+  fears                  String[]
+  enemies                CharacterEnemy[]
+  obstacles              Obstacle[]
+  internalConflicts      String[]
+  vices                  String[]
+  appearance             String
+  personalityTraits      String[]
+  items                  CharacterItem[]
+  spells                 CharacterSpell[]
+  level                  Int
+  experience             Int
+  health                 Int
+  stats                  Json // Store HP, AC, etc. as JSON
+  senses                 CharacterSense[]
+  userId                 String
+  user                   User                     @relation(fields: [userId], references: [id])
+  race                   Race                     @relation(fields: [raceId], references: [id])
+  class                  Class                    @relation(fields: [classId], references: [id])
+  subrace                Subrace?                 @relation(fields: [subraceId], references: [id])
+  OrganizationMembership OrganizationMembership[]
+  CharacterAbility       CharacterAbility[]
+}
+
+model Class {
+  id             Int          @id @default(autoincrement())
+  name           String       @unique
+  hitDice        String // e.g., "1d10"
+  primaryAbility String // e.g., "Strength"
+  savingThrows   String[] // e.g., ["Strength", "Constitution"]
+  proficiencies  String[] // e.g., ["Armor: All", "Weapons: All simple and martial weapons"]
+  spellcasting   Boolean // Whether the class has spellcasting ability
+  spellSlots     Json? // JSON for spell slots per level if applicable
+  spells         ClassSpell[]
+  characters     Character[]
+}
+
+model ClassSpell {
+  classId Int
+  spellId Int
+  class   Class @relation(fields: [classId], references: [id])
+  spell   Spell @relation(fields: [spellId], references: [id])
+
+  @@id([classId, spellId])
+}
+
+model Spell {
+  id          Int              @id @default(autoincrement())
+  name        String
+  level       Int // Spell level
+  school      String // School of magic
+  castTime    String // Casting time
+  range       String // Range of the spell
+  components  String[] // Components required
+  duration    String // Duration of the spell
+  description String
+  classes     ClassSpell[]
+  characters  CharacterSpell[]
+  enemies     EnemySpell[]
+}
+
+model Enemy {
+  id              Int              @id @default(autoincrement())
+  name            String
+  type            String // e.g., Goblin, Orc, Dragon
+  description     String
+  health          Int
+  armorClass      Int
+  challengeRating Float
+  experience      Int
+  actions         String[] // List of actions it can take
+  stats           Json // Store STR, DEX, etc. as JSON
+  vulnerabilities String[] // e.g., fire, ice
+  resistances     String[] // e.g., poison, magic
+  immunities      String[] // e.g., charm, fear
+  senses          EnemySense[]
+  languages       EnemyLanguage[]
+  items           EnemyItem[]
+  spells          EnemySpell[]
+  EnemySkill      EnemySkill[]
+  EnemyAbility    EnemyAbility[]
+  CharacterEnemy  CharacterEnemy[]
+}
+
+model Relationship {
+  id          Int       @id @default(autoincrement())
+  description String
+  characterId Int
+  character   Character @relation(fields: [characterId], references: [id])
+}
+
+model Organization {
+  id          Int                      @id @default(autoincrement())
+  name        String                   @unique
+  description String
+  members     OrganizationMembership[]
+  Character   Character?               @relation(fields: [characterId], references: [id])
+  characterId Int?
+}
+
+model OrganizationMembership {
+  id             Int          @id @default(autoincrement())
+  organizationId Int
+  characterId    Int
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  character      Character    @relation(fields: [characterId], references: [id])
+
+  @@unique([organizationId, characterId])
+}
+
+model Skill {
+  id             Int              @id @default(autoincrement())
+  name           String           @unique
+  abilityScoreId Int
+  abilityScore   AbilityScore     @relation(fields: [abilityScoreId], references: [id])
+  characters     CharacterSkill[]
+  enemies        EnemySkill[]
+}
+
+model AbilityScore {
+  id         Int                @id @default(autoincrement())
+  name       String             @unique // "Strength", "Dexterity", "Constitution", etc.
+  skills     Skill[]
+  characters CharacterAbility[]
+  enemies    EnemyAbility[]
+}
+
+model Language {
+  id                 Int                 @id @default(autoincrement())
+  name               String              @unique
+  characterLanguages CharacterLanguage[]
+  enemyLanguages     EnemyLanguage[]
+  raceLanguages      RaceLanguage[]
+}
+
+model CharacterSkill {
+  characterId Int
+  skillId     Int
+  character   Character @relation(fields: [characterId], references: [id])
+  skill       Skill     @relation(fields: [skillId], references: [id])
+  proficiency Int // Values: 0 = not proficient, 1 = proficient, 2 = expertise
+
+  @@id([characterId, skillId])
+}
+
+model EnemySkill {
+  enemyId     Int
+  skillId     Int
+  enemy       Enemy @relation(fields: [enemyId], references: [id])
+  skill       Skill @relation(fields: [skillId], references: [id])
+  proficiency Int // Values: 0 = not proficient, 1 = proficient, 2 = expertise
+
+  @@id([enemyId, skillId])
+}
+
+model CharacterAbility {
+  characterId    Int
+  abilityScoreId Int
+  character      Character    @relation(fields: [characterId], references: [id])
+  abilityScore   AbilityScore @relation(fields: [abilityScoreId], references: [id])
+
+  @@id([characterId, abilityScoreId])
+}
+
+model EnemyAbility {
+  enemyId        Int
+  abilityScoreId Int
+  enemy          Enemy        @relation(fields: [enemyId], references: [id])
+  abilityScore   AbilityScore @relation(fields: [abilityScoreId], references: [id])
+
+  @@id([enemyId, abilityScoreId])
+}
+
+model CharacterLanguage {
+  characterId Int
+  languageId  Int
+  character   Character @relation(fields: [characterId], references: [id])
+  language    Language  @relation(fields: [languageId], references: [id])
+
+  @@id([characterId, languageId])
+}
+
+model EnemyLanguage {
+  enemyId    Int
+  languageId Int
+  enemy      Enemy    @relation(fields: [enemyId], references: [id])
+  language   Language @relation(fields: [languageId], references: [id])
+
+  @@id([enemyId, languageId])
+}
+
+model CharacterItem {
+  characterId Int
+  itemId      Int
+  character   Character @relation(fields: [characterId], references: [id])
+  item        Item      @relation(fields: [itemId], references: [id])
+
+  @@id([characterId, itemId])
+}
+
+model EnemyItem {
+  enemyId Int
+  itemId  Int
+  enemy   Enemy @relation(fields: [enemyId], references: [id])
+  item    Item  @relation(fields: [itemId], references: [id])
+
+  @@id([enemyId, itemId])
+}
+
+model CharacterSpell {
+  characterId Int
+  spellId     Int
+  character   Character @relation(fields: [characterId], references: [id])
+  spell       Spell     @relation(fields: [spellId], references: [id])
+
+  @@id([characterId, spellId])
+}
+
+model EnemySpell {
+  enemyId Int
+  spellId Int
+  enemy   Enemy @relation(fields: [enemyId], references: [id])
+  spell   Spell @relation(fields: [spellId], references: [id])
+
+  @@id([enemyId, spellId])
+}
+
+model CharacterSense {
+  characterId Int
+  senseId     Int
+  character   Character @relation(fields: [characterId], references: [id])
+  sense       Sense     @relation(fields: [senseId], references: [id])
+
+  @@id([characterId, senseId])
+}
+
+model EnemySense {
+  enemyId Int
+  senseId Int
+  enemy   Enemy @relation(fields: [enemyId], references: [id])
+  sense   Sense @relation(fields: [senseId], references: [id])
+
+  @@id([enemyId, senseId])
+}
+
+model CharacterEnemy {
+  characterId Int
+  enemyId     Int
+  character   Character @relation(fields: [characterId], references: [id])
+  enemy       Enemy     @relation(fields: [enemyId], references: [id])
+
+  @@id([characterId, enemyId])
+}
+
+model Obstacle {
+  id          Int        @id @default(autoincrement())
+  description String
+  Character   Character? @relation(fields: [characterId], references: [id])
+  characterId Int?
+}
+
+model Sense {
+  id          Int              @id @default(autoincrement())
+  name        String    @unique// e.g., "Darkvision", "Tremorsense"
+  description String
+  range       Int // Range in feet, if applicable
+  characters  CharacterSense[]
+  enemies     EnemySense[]
+  races       RaceSense[]
+}
+
+model Item {
+  id         Int             @id @default(autoincrement())
+  name       String
+  type       String // e.g., "Armor", "Adventuring Gear", "Weapon"
+  weight     Float // Weight in pounds
+  cost       String // e.g., "10 gp"
+  attributes Json // Additional attributes stored as JSON, e.g., {"AC": 14, "Stealth": "Disadvantage"}
+  characters CharacterItem[]
+  enemies    EnemyItem[]
+}
+
+model Trait {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  description String
+  raceTraits  RaceTrait[]
+  subraceTraits SubraceTrait[]
+}
+
+model RaceTrait {
+  raceId     Int
+  traitId    Int
+  race       Race   @relation(fields: [raceId], references: [id])
+  trait      Trait  @relation(fields: [traitId], references: [id])
+  @@id([raceId, traitId])
+}
+
+model SubraceTrait {
+  subraceId  Int
+  traitId    Int
+  subrace    Subrace @relation(fields: [subraceId], references: [id])
+  trait      Trait   @relation(fields: [traitId], references: [id])
+  @@id([subraceId, traitId])
+}
+
+model RaceLanguage {
+  raceId     Int
+  languageId Int
+  race       Race     @relation(fields: [raceId], references: [id])
+  language   Language @relation(fields: [languageId], references: [id])
+
+  @@id([raceId, languageId])
+}
+
+model RaceSense {
+  raceId  Int
+  senseId Int
+  race    Race  @relation(fields: [raceId], references: [id])
+  sense   Sense @relation(fields: [senseId], references: [id])
+
+  @@id([raceId, senseId])
+}
+
+model Race {
+  id                    Int            @id @default(autoincrement())
+  name                  String         @unique
+  abilityScoreIncreases Json           // JSON object to store ability score increases, e.g., { "STR": 1, "DEX": 2 }
+  age                   String         // Description of the age range and lifespan
+  alignment             String         // Typical alignments
+  size                  String         // Size category (e.g., Medium, Small)
+  speed                 Int            // Base walking speed in feet
+  languages             RaceLanguage[]
+  senses                RaceSense[]
+  racialTraits          RaceTrait[]
+  subraces              Subrace[]      // Subraces associated with this race
+  characters            Character[]
+}
+
+model Subrace {
+  id                    Int            @id @default(autoincrement())
+  name                  String
+  parentRaceId          Int
+  parentRace            Race           @relation(fields: [parentRaceId], references: [id])
+  abilityScoreIncreases Json           // JSON object to store ability score increases specific to subrace
+  speed                 Int?           // Override or additional speed
+  traits                SubraceTrait[]
+  characters            Character[]    // Characters of this subrace
 }
