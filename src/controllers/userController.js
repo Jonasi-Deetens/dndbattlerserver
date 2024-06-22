@@ -14,7 +14,15 @@ const register = async (req, res) => {
     const user = await prisma.user.create({
       data: { email, password: hashedPassword, username }
     });
-    return res.status(201).json({ msg: 'User registered', userId: user.id });
+    const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
+      expiresIn: '24h'
+    });
+    const userData = {
+      id: user.id,
+      email: user.email,
+      username: user.username
+    };
+    return res.status(201).json({ token, userData });
   } catch (error) {
     return res.status(500).json({ msg: 'Server error' });
   }
@@ -36,7 +44,12 @@ const login = async (req, res) => {
     const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
       expiresIn: '24h'
     });
-    return res.status(201).json({ token });
+    const userData = {
+      id: user.id,
+      email: user.email,
+      username: user.username
+    };
+    return res.status(201).json({ token, userData });
   } catch (error) {
     return res.status(500).json({ msg: 'Server error' });
   }

@@ -77,6 +77,14 @@ exec('node trait_seed.js', (err, stdout, stderr) => {
                         process.exit(1);
                       }
                       console.log(`Obstacles seeded: ${stdout}`);
+
+                      exec('node npc_seed.js', (err, stdout, stderr) => {
+                        if (err) {
+                          console.error(`Error seeding npcs: ${stderr}`);
+                          process.exit(1);
+                        }
+                        console.log(`Npcs seeded: ${stdout}`);
+                      });
                     });
                   });
                 });
