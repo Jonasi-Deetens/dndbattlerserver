@@ -20,7 +20,6 @@ const getCharacters = async (req, res) => {
         enemies: { include: { enemy: true } }
       }
     });
-    console.log(allCharacters);
 
     return res.status(201).json({ allCharacters });
   } catch (error) {
@@ -29,7 +28,31 @@ const getCharacters = async (req, res) => {
 };
 
 const addCharacter = async (req, res) => {
-  //
+  const { characterData } = req.body;
+  try {
+    console.log(characterData);
+    const { languages, ...characterInfo } = characterData;
+    const character = await prisma.character.create({
+      data: {
+        ...characterInfo,
+        languages: {
+          create: languages.map(language => ({
+            language: { connect: { id: language.id } }
+          }))
+        }
+      },
+      include: {
+        languages: {
+          include: {
+            language: true
+          }
+        }
+      }
+    });
+    return res.status(201).json({ character });
+  } catch (error) {
+    return res.status(500).json({ msg: 'Server error' });
+  }
 };
 
 export { addCharacter, getCharacters };

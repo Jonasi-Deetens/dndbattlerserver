@@ -1,4 +1,7 @@
 import { PrismaClient } from '@prisma/client';
+import dotenv from 'dotenv';
+dotenv.config();
+
 const prisma = new PrismaClient();
 
 // List of all D&D 5e senses
@@ -16,6 +19,12 @@ const senses = [
       'A creature with darkvision can see in darkness as if the darkness were dim light, so areas of darkness are only lightly obscured as far as that creature is concerned.'
   },
   {
+    name: 'Superior Darkvision',
+    range: 120,
+    description:
+      'A creature with darkvision can see in darkness as if the darkness were dim light, so areas of darkness are only lightly obscured as far as that creature is concerned.'
+  },
+  {
     name: 'Truesight',
     range: 120,
     description:
@@ -26,12 +35,6 @@ const senses = [
     range: 30,
     description:
       'A creature with tremorsense can detect and pinpoint the origin of vibrations within a specific radius, provided that the creature and the source of the vibrations are in contact with the same ground or substance.'
-  },
-  {
-    name: 'Keen Senses',
-    range: 0,
-    description:
-      'A creature with keen senses has proficiency in the Perception skill.'
   },
   {
     name: 'Blind Beyond This Radius',

@@ -1,91 +1,75 @@
 // seed_all.js
 import { exec } from 'child_process';
 
-exec('node trait_seed.js', (err, stdout, stderr) => {
+exec('node language_seed.js', (err, stdout, stderr) => {
   if (err) {
-    console.error(`Error seeding traits: ${stderr}`);
+    console.error(`Error seeding languages: ${stderr}`);
     process.exit(1);
   }
-  console.log(`Traits seeded: ${stdout}`);
+  console.log(`Languages seeded: ${stdout}`);
 
-  exec('node language_seed.js', (err, stdout, stderr) => {
+  exec('node senses_seed.js', (err, stdout, stderr) => {
     if (err) {
-      console.error(`Error seeding languages: ${stderr}`);
+      console.error(`Error seeding senses: ${stderr}`);
       process.exit(1);
     }
-    console.log(`Languages seeded: ${stdout}`);
+    console.log(`Senses seeded: ${stdout}`);
 
-    exec('node senses_seed.js', (err, stdout, stderr) => {
+    exec('node spell_seed.js', (err, stdout, stderr) => {
       if (err) {
-        console.error(`Error seeding senses: ${stderr}`);
+        console.error(`Error seeding spells: ${stderr}`);
         process.exit(1);
       }
-      console.log(`Senses seeded: ${stdout}`);
+      console.log(`Spells seeded: ${stdout}`);
 
-      exec('node spell_seed.js', (err, stdout, stderr) => {
+      exec('node race_seed.js', (err, stdout, stderr) => {
         if (err) {
-          console.error(`Error seeding spells: ${stderr}`);
+          console.error(`Error seeding races: ${stderr}`);
           process.exit(1);
         }
-        console.log(`Spells seeded: ${stdout}`);
+        console.log(`Races seeded: ${stdout}`);
 
-        exec('node race_seed.js', (err, stdout, stderr) => {
+        exec('node class_seed.js', (err, stdout, stderr) => {
           if (err) {
-            console.error(`Error seeding races: ${stderr}`);
+            console.error(`Error seeding classes: ${stderr}`);
             process.exit(1);
           }
-          console.log(`Races seeded: ${stdout}`);
+          console.log(`Classes seeded: ${stdout}`);
 
-          exec('node class_seed.js', (err, stdout, stderr) => {
+          exec('node organization_seed.js', (err, stdout, stderr) => {
             if (err) {
-              console.error(`Error seeding classes: ${stderr}`);
+              console.error(`Error seeding organizations: ${stderr}`);
               process.exit(1);
             }
-            console.log(`Classes seeded: ${stdout}`);
+            console.log(`Organizations seeded: ${stdout}`);
 
-            exec('node organization_seed.js', (err, stdout, stderr) => {
+            exec('node skill_seed.js', (err, stdout, stderr) => {
               if (err) {
-                console.error(`Error seeding organizations: ${stderr}`);
+                console.error(`Error seeding skills: ${stderr}`);
                 process.exit(1);
               }
-              console.log(`Organizations seeded: ${stdout}`);
+              console.log(`Skills seeded: ${stdout}`);
 
-              exec('node ability_score_seed.js', (err, stdout, stderr) => {
+              exec('node item_seed.js', (err, stdout, stderr) => {
                 if (err) {
-                  console.error(`Error seeding ability scores: ${stderr}`);
+                  console.error(`Error seeding items: ${stderr}`);
                   process.exit(1);
                 }
-                console.log(`Ability scores seeded: ${stdout}`);
+                console.log(`Items seeded: ${stdout}`);
 
-                exec('node skill_seed.js', (err, stdout, stderr) => {
+                exec('node obstacle_seed.js', (err, stdout, stderr) => {
                   if (err) {
-                    console.error(`Error seeding skills: ${stderr}`);
+                    console.error(`Error seeding obstacles: ${stderr}`);
                     process.exit(1);
                   }
-                  console.log(`Skills seeded: ${stdout}`);
+                  console.log(`Obstacles seeded: ${stdout}`);
 
-                  exec('node item_seed.js', (err, stdout, stderr) => {
+                  exec('node npc_seed.js', (err, stdout, stderr) => {
                     if (err) {
-                      console.error(`Error seeding items: ${stderr}`);
+                      console.error(`Error seeding npcs: ${stderr}`);
                       process.exit(1);
                     }
-                    console.log(`Items seeded: ${stdout}`);
-
-                    exec('node obstacle_seed.js', (err, stdout, stderr) => {
-                      if (err) {
-                        console.error(`Error seeding obstacles: ${stderr}`);
-                        process.exit(1);
-                      }
-                      console.log(`Obstacles seeded: ${stdout}`);
-
-                      exec('node npc_seed.js', (err, stdout, stderr) => {
-                        if (err) {
-                          console.error(`Error seeding npcs: ${stderr}`);
-                          process.exit(1);
-                        }
-                        console.log(`Npcs seeded: ${stdout}`);
-                      });
-                    });
+                    console.log(`Npcs seeded: ${stdout}`);
                   });
                 });
               });

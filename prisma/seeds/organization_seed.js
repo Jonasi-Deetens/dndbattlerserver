@@ -6,51 +6,64 @@ async function main() {
   // List of organizations
   const organizations = [
     {
-      name: 'The Fellowship of the Ring',
-      description: 'A group formed to destroy the One Ring and defeat Sauron.'
+      name: 'The Silver Blades',
+      description:
+        'An elite group of mercenaries known for their unmatched swordsmanship and loyalty to the highest bidder.'
     },
     {
-      name: 'The Order of the Gauntlet',
+      name: 'The Arcane Brotherhood',
       description:
-        'An order of holy knights who seek to uphold justice and vanquish evil.'
-    },
-    {
-      name: 'The Harpers',
-      description:
-        'A clandestine network of spellcasters and spies who advocate equality and covertly oppose the abuse of power.'
-    },
-    {
-      name: 'The Zhentarim',
-      description:
-        'A shadowy organization that seeks to extend its influence and control across Faerûn.'
+        'A secretive organization of wizards and sorcerers dedicated to uncovering and preserving ancient magical knowledge.'
     },
     {
       name: 'The Emerald Enclave',
       description:
-        'A group of wilderness survivalists who preserve the natural order while rooting out unnatural threats.'
+        'A coalition of druids, rangers, and nature lovers who strive to maintain the balance between civilization and the natural world.'
     },
     {
-      name: "The Lords' Alliance",
+      name: 'The Shadow Thieves',
       description:
-        'A coalition of political powers concerned with mutual security and prosperity.'
+        'A notorious thieves guild that operates in the shadows, specializing in burglary, smuggling, and espionage.'
     },
     {
-      name: 'The Cult of the Dragon',
+      name: 'The Crimson Order',
       description:
-        'A secret society that worships and supports dragons and dracoliches.'
+        'A fanatical group of warriors who believe in the supremacy of martial prowess and seek to conquer all who oppose them.'
+    },
+    {
+      name: 'The Golden Hand',
+      description:
+        'A powerful merchant guild that controls trade routes and commerce in several major cities.'
+    },
+    {
+      name: 'The Knights of the Silver Flame',
+      description:
+        'A chivalric order dedicated to eradicating evil and defending the innocent, guided by the divine light of the Silver Flame.'
+    },
+    {
+      name: 'The Iron Fist',
+      description:
+        'A brutal and authoritarian militia that imposes strict laws and order within its territory, often through fear and intimidation.'
+    },
+    {
+      name: 'The Order of the Eternal Dawn',
+      description:
+        'A religious organization devoted to the worship of the sun god and the pursuit of enlightenment and truth.'
+    },
+    {
+      name: 'The Black Lotus',
+      description:
+        'An enigmatic assassin guild that is rumored to be behind some of the most high-profile assassinations across the realm.'
     }
   ];
 
-  // Create organizations
-  for (const org of organizations) {
-    const createdOrganization = await prisma.organization.create({
-      data: {
-        name: org.name,
-        description: org.description
-      }
+  for (const organization of organizations) {
+    await prisma.organization.create({
+      data: organization
     });
-    console.log(`Created organization: ${createdOrganization.name}`);
   }
+
+  console.log('Successfully seeded organizations!');
 }
 
 main()
