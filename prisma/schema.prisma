@@ -258,18 +258,12 @@ model Spell {
   boostedBySpellModifier Boolean? // For spells that have + spellcasting ability modifier
   rollByCharacterLevel   Boolean? // Indicates if the roll is based on character level
   rollBySpellSlot        Boolean? // Indicates if the roll is based on spell slot level
-  raceId                 Int?
-  classId                Int?
-  subraceId              Int?
-  race                   Race?          @relation(fields: [raceId], references: [id])
-  class                  Class?         @relation(fields: [classId], references: [id])
-  subrace                Subrace?      @relation(fields: [subraceId], references: [id])
-  Character              Character?    @relation(fields: [characterId], references: [id])
-  characterId            Int?
-  Npc                    Npc?          @relation(fields: [npcId], references: [id])
-  npcId                  Int?
-  Monster                Monster?      @relation(fields: [monsterId], references: [id])
-  monsterId              Int?
+  race                   Race[]         
+  class                  Class[]         
+  subrace                Subrace[]    
+  Character              Character[]  
+  Npc                    Npc[]       
+  Monster                Monster[]   
 }
 
 model SpellEffect {
