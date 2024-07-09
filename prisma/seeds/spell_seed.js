@@ -800,6 +800,35 @@ async function main() {
       }
     },
     {
+      name: 'Comprehend Languages',
+      spellLevel: 1,
+      castingTime: 1,
+      range: 0,
+      area: 0,
+      school: 'DIVINATION',
+      components: ['V', 'S', 'M'],
+      description:
+        'For the duration, you understand the literal meaning of any spoken language that you hear. You also understand any written language that you see, but you must be touching the surface on which the words are written. It takes about 1 minute to read one page of text.',
+      effectType: 'UTILITY',
+      duration: 60,
+      concentration: false,
+      ritual: true,
+      spellEffects: {
+        create: [
+          {
+            targetType: 'Self',
+            effectType: 'UTILITY',
+            value: JSON.stringify({
+              description:
+                'Understand the literal meaning of any spoken language and any written language that you see.',
+              duration: 3600,
+              area: 'Self'
+            })
+          }
+        ]
+      }
+    },
+    {
       name: 'Create or Destroy Water',
       spellLevel: 1,
       castingTime: 0, // 1 action
