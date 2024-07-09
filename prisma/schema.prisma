@@ -150,18 +150,65 @@ model Monster {
 }
 
 model Class {
-  id             Int         @id @default(autoincrement())
-  name           String      @unique
-  description    String
-  hitDice        String // e.g., "1d10"
-  primaryAbility String // e.g., "Strength"
-  savingThrows   String[] // e.g., ["Strength", "Constitution"]
-  proficiencies  String[] // e.g., ["Armor: All", "Weapons: All simple and martial weapons"]
-  spellcasting   Boolean // Whether the class has spellcasting ability
-  spellSlots     Json? // JSON for spell slots per level if applicable
-  spells         Spell[]
-  characters     Character[]
-  npcs           Npc[]
+  id                        Int      @id @default(autoincrement())
+  name                      String   @unique
+  description               String
+  hitDice                   Dice
+  proficiencies             String[]
+  savingThrowProficiencies  AbilityScore[]
+  items                     Item[]
+  proficiencyBonusByLevel   Json
+  numberOfRagesByLevel      Json?
+  abilitiesByLevel          Json
+  buffsByLevel              Json
+  primaryAbilityScoreModifier AbilityScore?
+  pimarySpellAbilityScoreModifier AbilityScore?
+  subClasses                Subclass[]
+  rageDamageByLevel         Json
+  spells                    Spell[]
+  spellsByLevel             Json
+  spellSlotsByLevel         Json
+  skillsByLevel             Json
+  subClassAvailableAtLevel  Int
+  unusableItems             String[]
+  fightingStyles            FightingStyle[]
+  movementSpeedBonusByLevel Json
+  exhaustionLevel           Int
+  kiPointsByLevel           Json
+  sorceryPointsByLevel      Json
+  sneakAttackByLevel        Json?
+  invocationsKnownByLevel   Json
+  cantripsKnownByLevel      Json  // JSON object mapping levels to amount of cantrips
+  spellsKnownByLevel        Json  // JSON object mapping levels to amount of spells
+  characters                Character[]
+  npcs                      Npc[]
+}
+
+model Subclass {
+  id                        Int      @id @default(autoincrement())
+  name                      String   @unique
+  description               String
+  proficiencies             String[] // List of proficiencies granted by the subclass
+  pimarySpellAbilityScoreModifier AbilityScore?
+  savingThrowProficiencies  AbilityScore[] // List of saving throw proficiencies
+  spells                    Spell[]  // List of spells available to the subclass
+  spellsByLevel             Json     // JSON object mapping levels to available spells
+  skillsByLevel             Json     // JSON object mapping levels to granted skills
+  abilitiesByLevel          Json     // JSON object mapping levels to granted abilities 
+  spellslotsBySpellLevelByLevel Json?  // JSON object mapping levels to amount of spell slots per spell level
+  cantripsKnownByLevel      Json?  // JSON object mapping levels to amount of cantrips
+  spellsKnownByLevel        Json?  // JSON object mapping levels to amount of spells
+  parentClassId             Int
+  parentClass               Class     @relation(fields: [parentClassId], references: [id])
+}
+
+enum FightingStyle {
+  ARCHERY
+  DEFENSE
+  DUELING
+  GREAT_WEAPON_FIGHTING
+  PROTECTION
+  TWO_WEAPON_FIGHTING
 }
 
 enum School {
@@ -260,6 +307,7 @@ model Spell {
   rollBySpellSlot        Boolean? // Indicates if the roll is based on spell slot level
   race                   Race[]         
   class                  Class[]         
+  subClasses             Subclass[]         
   subrace                Subrace[]    
   Character              Character[]  
   Npc                    Npc[]       
@@ -366,6 +414,7 @@ model Item {
   characters Character[]
   npcs       Npc[]
   monsters   Monster[]
+  classes    Class[]
 }
 
 model Race {
