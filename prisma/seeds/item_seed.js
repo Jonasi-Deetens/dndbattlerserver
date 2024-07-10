@@ -10,21 +10,21 @@ async function main() {
     // Light Armor
     {
       name: 'Padded Armor',
-      type: 'Armor',
+      type: 'Light Armor',
       weight: 8.0,
       cost: '5 gp',
       attributes: { AC: 11, Stealth: 'Disadvantage' }
     },
     {
       name: 'Leather Armor',
-      type: 'Armor',
+      type: 'Light Armor',
       weight: 10.0,
       cost: '10 gp',
       attributes: { AC: 11 }
     },
     {
       name: 'Studded Leather Armor',
-      type: 'Armor',
+      type: 'Light Armor',
       weight: 13.0,
       cost: '45 gp',
       attributes: { AC: 12 }
@@ -33,35 +33,35 @@ async function main() {
     // Medium Armor
     {
       name: 'Hide Armor',
-      type: 'Armor',
+      type: 'Medium Armor',
       weight: 12.0,
       cost: '10 gp',
       attributes: { AC: 12 }
     },
     {
       name: 'Chain Shirt',
-      type: 'Armor',
+      type: 'Medium Armor',
       weight: 20.0,
       cost: '50 gp',
       attributes: { AC: 13 }
     },
     {
       name: 'Scale Mail',
-      type: 'Armor',
+      type: 'Medium Armor',
       weight: 45.0,
       cost: '50 gp',
       attributes: { AC: 14, Stealth: 'Disadvantage' }
     },
     {
       name: 'Breastplate',
-      type: 'Armor',
+      type: 'Medium Armor',
       weight: 20.0,
       cost: '400 gp',
       attributes: { AC: 14 }
     },
     {
       name: 'Half Plate',
-      type: 'Armor',
+      type: 'Medium Armor',
       weight: 40.0,
       cost: '750 gp',
       attributes: { AC: 15, Stealth: 'Disadvantage' }
@@ -70,28 +70,28 @@ async function main() {
     // Heavy Armor
     {
       name: 'Ring Mail',
-      type: 'Armor',
+      type: 'Heavy Armor',
       weight: 40.0,
       cost: '30 gp',
       attributes: { AC: 14, Stealth: 'Disadvantage' }
     },
     {
       name: 'Chain Mail',
-      type: 'Armor',
+      type: 'Heavy Armor',
       weight: 55.0,
       cost: '75 gp',
       attributes: { AC: 16, Stealth: 'Disadvantage' }
     },
     {
       name: 'Splint Armor',
-      type: 'Armor',
+      type: 'Heavy Armor',
       weight: 60.0,
       cost: '200 gp',
       attributes: { AC: 17, Stealth: 'Disadvantage' }
     },
     {
       name: 'Plate Armor',
-      type: 'Armor',
+      type: 'Heavy Armor',
       weight: 65.0,
       cost: '1500 gp',
       attributes: { AC: 18, Stealth: 'Disadvantage' }
@@ -100,7 +100,7 @@ async function main() {
     // Shields
     {
       name: 'Shield',
-      type: 'Armor',
+      type: 'Shield',
       weight: 6.0,
       cost: '10 gp',
       attributes: { AC: 2 }
@@ -109,14 +109,16 @@ async function main() {
     // Simple Melee Weapons
     {
       name: 'Club',
-      type: 'Weapon',
+      type: 'Simple Weapon',
+      rangeType: 'Melee',
       weight: 2.0,
       cost: '1 sp',
       attributes: { Damage: '1d4 bludgeoning', Properties: ['Light'] }
     },
     {
       name: 'Dagger',
-      type: 'Weapon',
+      type: 'Simple Weapon',
+      rangeType: 'Melee',
       weight: 1.0,
       cost: '2 gp',
       attributes: {
@@ -126,14 +128,16 @@ async function main() {
     },
     {
       name: 'Greatclub',
-      type: 'Weapon',
+      type: 'Simple Weapon',
+      rangeType: 'Melee',
       weight: 10.0,
       cost: '2 sp',
       attributes: { Damage: '1d8 bludgeoning', Properties: ['Two-handed'] }
     },
     {
       name: 'Handaxe',
-      type: 'Weapon',
+      type: 'Simple Weapon',
+      rangeType: 'Melee',
       weight: 2.0,
       cost: '5 gp',
       attributes: {
@@ -143,14 +147,16 @@ async function main() {
     },
     {
       name: 'Javelin',
-      type: 'Weapon',
+      type: 'Simple Weapon',
+      rangeType: 'Melee',
       weight: 2.0,
       cost: '5 sp',
       attributes: { Damage: '1d6 piercing', Properties: ['Thrown (30/120)'] }
     },
     {
       name: 'Light Hammer',
-      type: 'Weapon',
+      type: 'Simple Weapon',
+      rangeType: 'Melee',
       weight: 2.0,
       cost: '2 gp',
       attributes: {
@@ -160,28 +166,32 @@ async function main() {
     },
     {
       name: 'Mace',
-      type: 'Weapon',
+      type: 'Simple Weapon',
+      rangeType: 'Melee',
       weight: 4.0,
       cost: '5 gp',
       attributes: { Damage: '1d6 bludgeoning' }
     },
     {
       name: 'Quarterstaff',
-      type: 'Weapon',
+      type: 'Simple Weapon',
+      rangeType: 'Melee',
       weight: 4.0,
       cost: '2 sp',
       attributes: { Damage: '1d6 bludgeoning', Properties: ['Versatile (1d8)'] }
     },
     {
       name: 'Sickle',
-      type: 'Weapon',
+      type: 'Simple Weapon',
+      rangeType: 'Melee',
       weight: 2.0,
       cost: '1 gp',
       attributes: { Damage: '1d4 slashing', Properties: ['Light'] }
     },
     {
       name: 'Spear',
-      type: 'Weapon',
+      type: 'Simple Weapon',
+      rangeType: 'Melee',
       weight: 3.0,
       cost: '1 gp',
       attributes: {
@@ -193,7 +203,8 @@ async function main() {
     // Simple Ranged Weapons
     {
       name: 'Crossbow, Light',
-      type: 'Weapon',
+      type: 'Simple Weapon',
+      rangeType: 'Ranged',
       weight: 5.0,
       cost: '25 gp',
       attributes: {
@@ -203,7 +214,8 @@ async function main() {
     },
     {
       name: 'Dart',
-      type: 'Weapon',
+      type: 'Simple Weapon',
+      rangeType: 'Ranged',
       weight: 0.25,
       cost: '5 cp',
       attributes: {
@@ -213,7 +225,8 @@ async function main() {
     },
     {
       name: 'Shortbow',
-      type: 'Weapon',
+      type: 'Simple Weapon',
+      rangeType: 'Ranged',
       weight: 2.0,
       cost: '25 gp',
       attributes: {
@@ -223,7 +236,8 @@ async function main() {
     },
     {
       name: 'Sling',
-      type: 'Weapon',
+      type: 'Simple Weapon',
+      rangeType: 'Ranged',
       weight: 0.0,
       cost: '1 sp',
       attributes: {
@@ -235,21 +249,24 @@ async function main() {
     // Martial Melee Weapons
     {
       name: 'Battleaxe',
-      type: 'Weapon',
+      type: 'Martial Weapon',
+      rangeType: 'Melee',
       weight: 4.0,
       cost: '10 gp',
       attributes: { Damage: '1d8 slashing', Properties: ['Versatile (1d10)'] }
     },
     {
       name: 'Flail',
-      type: 'Weapon',
+      type: 'Martial Weapon',
+      rangeType: 'Melee',
       weight: 2.0,
       cost: '10 gp',
       attributes: { Damage: '1d8 bludgeoning' }
     },
     {
       name: 'Glaive',
-      type: 'Weapon',
+      type: 'Martial Weapon',
+      rangeType: 'Melee',
       weight: 6.0,
       cost: '20 gp',
       attributes: {
@@ -259,7 +276,8 @@ async function main() {
     },
     {
       name: 'Greataxe',
-      type: 'Weapon',
+      type: 'Martial Weapon',
+      rangeType: 'Melee',
       weight: 7.0,
       cost: '30 gp',
       attributes: {
@@ -269,7 +287,8 @@ async function main() {
     },
     {
       name: 'Greatsword',
-      type: 'Weapon',
+      type: 'Martial Weapon',
+      rangeType: 'Melee',
       weight: 6.0,
       cost: '50 gp',
       attributes: {
@@ -279,7 +298,8 @@ async function main() {
     },
     {
       name: 'Halberd',
-      type: 'Weapon',
+      type: 'Martial Weapon',
+      rangeType: 'Melee',
       weight: 6.0,
       cost: '20 gp',
       attributes: {
@@ -289,21 +309,24 @@ async function main() {
     },
     {
       name: 'Lance',
-      type: 'Weapon',
+      type: 'Martial Weapon',
+      rangeType: 'Melee',
       weight: 6.0,
       cost: '10 gp',
       attributes: { Damage: '1d12 piercing', Properties: ['Reach', 'Special'] }
     },
     {
       name: 'Longsword',
-      type: 'Weapon',
+      type: 'Martial Weapon',
+      rangeType: 'Melee',
       weight: 3.0,
       cost: '15 gp',
       attributes: { Damage: '1d8 slashing', Properties: ['Versatile (1d10)'] }
     },
     {
       name: 'Maul',
-      type: 'Weapon',
+      type: 'Martial Weapon',
+      rangeType: 'Melee',
       weight: 10.0,
       cost: '10 gp',
       attributes: {
@@ -313,14 +336,16 @@ async function main() {
     },
     {
       name: 'Morningstar',
-      type: 'Weapon',
+      type: 'Martial Weapon',
+      rangeType: 'Melee',
       weight: 4.0,
       cost: '15 gp',
       attributes: { Damage: '1d8 piercing' }
     },
     {
       name: 'Pike',
-      type: 'Weapon',
+      type: 'Martial Weapon',
+      rangeType: 'Melee',
       weight: 18.0,
       cost: '5 gp',
       attributes: {
@@ -330,28 +355,32 @@ async function main() {
     },
     {
       name: 'Rapier',
-      type: 'Weapon',
+      type: 'Martial Weapon',
+      rangeType: 'Melee',
       weight: 2.0,
       cost: '25 gp',
       attributes: { Damage: '1d8 piercing', Properties: ['Finesse'] }
     },
     {
       name: 'Scimitar',
-      type: 'Weapon',
+      type: 'Martial Weapon',
+      rangeType: 'Melee',
       weight: 3.0,
       cost: '25 gp',
       attributes: { Damage: '1d6 slashing', Properties: ['Finesse', 'Light'] }
     },
     {
       name: 'Shortsword',
-      type: 'Weapon',
+      type: 'Martial Weapon',
+      rangeType: 'Melee',
       weight: 2.0,
       cost: '10 gp',
       attributes: { Damage: '1d6 piercing', Properties: ['Finesse', 'Light'] }
     },
     {
       name: 'Trident',
-      type: 'Weapon',
+      type: 'Martial Weapon',
+      rangeType: 'Melee',
       weight: 4.0,
       cost: '5 gp',
       attributes: {
@@ -361,14 +390,16 @@ async function main() {
     },
     {
       name: 'War Pick',
-      type: 'Weapon',
+      type: 'Martial Weapon',
+      rangeType: 'Melee',
       weight: 2.0,
       cost: '5 gp',
       attributes: { Damage: '1d8 piercing' }
     },
     {
       name: 'Warhammer',
-      type: 'Weapon',
+      type: 'Martial Weapon',
+      rangeType: 'Melee',
       weight: 2.0,
       cost: '15 gp',
       attributes: {
@@ -378,7 +409,8 @@ async function main() {
     },
     {
       name: 'Whip',
-      type: 'Weapon',
+      type: 'Martial Weapon',
+      rangeType: 'Melee',
       weight: 3.0,
       cost: '2 gp',
       attributes: { Damage: '1d4 slashing', Properties: ['Finesse', 'Reach'] }
@@ -387,7 +419,8 @@ async function main() {
     // Martial Ranged Weapons
     {
       name: 'Blowgun',
-      type: 'Weapon',
+      type: 'Martial Weapon',
+      rangeType: 'Ranged',
       weight: 1.0,
       cost: '10 gp',
       attributes: {
@@ -397,7 +430,8 @@ async function main() {
     },
     {
       name: 'Crossbow, Hand',
-      type: 'Weapon',
+      type: 'Martial Weapon',
+      rangeType: 'Ranged',
       weight: 3.0,
       cost: '75 gp',
       attributes: {
@@ -407,7 +441,8 @@ async function main() {
     },
     {
       name: 'Crossbow, Heavy',
-      type: 'Weapon',
+      type: 'Martial Weapon',
+      rangeType: 'Ranged',
       weight: 18.0,
       cost: '50 gp',
       attributes: {
@@ -417,7 +452,8 @@ async function main() {
     },
     {
       name: 'Longbow',
-      type: 'Weapon',
+      type: 'Martial Weapon',
+      rangeType: 'Ranged',
       weight: 2.0,
       cost: '50 gp',
       attributes: {
@@ -427,7 +463,8 @@ async function main() {
     },
     {
       name: 'Net',
-      type: 'Weapon',
+      type: 'Martial Weapon',
+      rangeType: 'Ranged',
       weight: 3.0,
       cost: '1 gp',
       attributes: { Properties: ['Special', 'Thrown (5/15)'] }

@@ -164,7 +164,7 @@ model Class {
   primaryAbilityScoreModifier AbilityScore?
   pimarySpellAbilityScoreModifier AbilityScore?
   subClasses                Subclass[]
-  rageDamageByLevel         Json
+  rageDamageByLevel         Json?
   spells                    Spell[]
   spellsByLevel             Json
   spellSlotsByLevel         Json
@@ -355,11 +355,17 @@ model Membership {
 }
 
 model Ability {
-  id         Int         @id @default(autoincrement())
-  name       String      @unique
-  characters Character[]
-  npcs       Npc[]
-  monsters   Monster[]
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  damage      String?  // Nullable field to store damage information if applicable
+  buffs       String?  // Nullable field to store buffs or additional effects if applicable
+  duration    String?  // Nullable field to store the duration of the ability
+  range       String?  // Nullable field to store the range of the ability
+  actionType  String? 
+  characters  Character[]
+  npcs        Npc[]
+  monsters    Monster[]
 }
 
 model Language {
@@ -408,6 +414,7 @@ model Item {
   id         Int         @id @default(autoincrement())
   name       String
   type       String // e.g., "Armor", "Adventuring Gear", "Weapon"
+  rangeType  String?
   weight     Float // Weight in pounds
   cost       String // e.g., "10 gp"
   attributes Json // Additional attributes stored as JSON, e.g., {"AC": 14, "Stealth": "Disadvantage"}

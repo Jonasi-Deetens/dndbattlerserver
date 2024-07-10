@@ -1,5 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
+import dotenv from 'dotenv';
+dotenv.config();
 
 // List of all D&D 5e classes
 async function getSpellIdsByNames(names) {
@@ -14,7 +16,6 @@ async function getSpellIdsByNames(names) {
 
 async function main() {
   //BARBARIAN
-
   const barbarian = await prisma.class.create({
     data: {
       name: 'Barbarian',
@@ -107,9 +108,7 @@ async function main() {
         20: 4
       }),
       spells: {
-        connect: [
-          // Add items appropriate for wizards here
-        ]
+        connect: []
       },
       spellsByLevel: JSON.stringify({}),
       spellSlotsByLevel: JSON.stringify({}),
@@ -221,9 +220,7 @@ async function main() {
       ],
       savingThrowProficiencies: ['DEX', 'CHA'],
       items: {
-        connect: [
-          // Add items appropriate for wizards here
-        ]
+        connect: []
       },
       proficiencyBonusByLevel: JSON.stringify({
         1: 2,
@@ -271,7 +268,7 @@ async function main() {
           { name: 'Silent Image' },
           { name: 'Sleep' },
           { name: 'Speak with Animals' },
-          { name: 'Tasha’s Hideous Laughter' },
+          { name: "Tasha's Hideous Laughter" },
           { name: 'Thunderwave' },
           { name: 'Unseen Servant' },
           { name: 'Animal Messenger' },
@@ -303,7 +300,7 @@ async function main() {
           { name: 'Feign Death' },
           { name: 'Glyph of Warding' },
           { name: 'Hypnotic Pattern' },
-          { name: 'Leomund’s Tiny Hut' },
+          { name: "Leomund's Tiny Hut" },
           { name: 'Major Image' },
           { name: 'Nondetection' },
           { name: 'Plant Growth' },
@@ -338,14 +335,14 @@ async function main() {
           { name: 'Teleportation Circle' },
           { name: 'Eyebite' },
           { name: 'Find the Path' },
-          { name: 'Heroes’ Feast' },
+          { name: "Heroes' Feast" },
           { name: 'Programmed Illusion' },
           { name: 'True Seeing' },
           { name: 'Etherealness' },
           { name: 'Forcecage' },
           { name: 'Mirage Arcane' },
-          { name: 'Mordenkainen’s Magnificent Mansion' },
-          { name: 'Mordenkainen’s Sword' },
+          { name: "Mordenkainen's Magnificent Mansion" },
+          { name: "Mordenkainen's Sword" },
           { name: 'Project Image' },
           { name: 'Regenerate' },
           { name: 'Resurrection' },
@@ -381,7 +378,7 @@ async function main() {
           'Silent Image',
           'Sleep',
           'Speak with Animals',
-          'Tasha’s Hideous Laughter',
+          "Tasha's Hideous Laughter",
           'Thunderwave',
           'Unseen Servant'
         ],
@@ -417,7 +414,7 @@ async function main() {
           'Feign Death',
           'Glyph of Warding',
           'Hypnotic Pattern',
-          'Leomund’s Tiny Hut',
+          "Leomund's Tiny Hut",
           'Major Image',
           'Nondetection',
           'Plant Growth',
@@ -458,7 +455,7 @@ async function main() {
         6: [
           'Eyebite',
           'Find the Path',
-          'Heroes’ Feast',
+          "Heroes' Feast",
           'Programmed Illusion',
           'True Seeing'
         ],
@@ -466,8 +463,8 @@ async function main() {
           'Etherealness',
           'Forcecage',
           'Mirage Arcane',
-          'Mordenkainen’s Magnificent Mansion',
-          'Mordenkainen’s Sword',
+          "Mordenkainen's Magnificent Mansion",
+          "Mordenkainen's Sword",
           'Project Image',
           'Regenerate',
           'Resurrection',
@@ -622,9 +619,7 @@ async function main() {
       proficiencies: ['Light Armor', 'Medium Armor', 'Shield', 'Simple Weapon'],
       savingThrowProficiencies: ['WIS', 'CHA'],
       items: {
-        connect: [
-          // Add items appropriate for wizards here
-        ]
+        connect: []
       },
       proficiencyBonusByLevel: JSON.stringify({
         1: 2,
@@ -817,7 +812,7 @@ async function main() {
           { name: 'Forbiddance' },
           { name: 'Harm' },
           { name: 'Heal' },
-          { name: 'Heroes’ Feast' },
+          { name: "Heroes' Feast" },
           { name: 'Planar Ally' },
           { name: 'True Seeing' },
           { name: 'Word of Recall' },
@@ -921,7 +916,7 @@ async function main() {
           'Forbiddance',
           'Harm',
           'Heal',
-          'Heroes’ Feast',
+          "Heroes' Feast",
           'Planar Ally',
           'True Seeing',
           'Word of Recall'
@@ -976,7 +971,6 @@ async function main() {
         1: ['Blessings of Knowledge'],
         2: ['Channel Divinity: Knowledge of the Ages'],
         6: ['Channel Divinity: Read Thoughts'],
-
         17: ['Visions of the Past']
       }),
       parentClass: {
@@ -1167,7 +1161,7 @@ async function main() {
           { name: 'Charm Person' },
           { name: 'Disguise Self' },
           { name: 'Mirror Image' },
-          { name: 'Pass without Trace' },
+          { name: 'Pass Without Trace' },
           { name: 'Blink' },
           { name: 'Dispel Magic' },
           { name: 'Dimension Door' },
@@ -1178,7 +1172,7 @@ async function main() {
       },
       spellsByLevel: JSON.stringify({
         1: ['Charm Person', 'Disguise Self'],
-        3: ['Mirror Image', 'Pass without Trace'],
+        3: ['Mirror Image', 'Pass Without Trace'],
         5: ['Blink', 'Dispel Magic'],
         7: ['Dimension Door', 'Polymorph'],
         9: ['Dominate Person', 'Modify Memory']
@@ -1265,9 +1259,7 @@ async function main() {
       ],
       savingThrowProficiencies: ['INT', 'WIS'],
       items: {
-        connect: [
-          // Add items appropriate for wizards here
-        ]
+        connect: []
       },
       proficiencyBonusByLevel: JSON.stringify({
         1: 2,
@@ -1329,7 +1321,7 @@ async function main() {
           { name: 'Locate Animals or Plants' },
           { name: 'Locate Object' },
           { name: 'Moonbeam' },
-          { name: 'Pass without Trace' },
+          { name: 'Pass Without Trace' },
           { name: 'Protection from Poison' },
           { name: 'Spike Growth' },
           { name: 'Call Lightning' },
@@ -1376,7 +1368,7 @@ async function main() {
           { name: 'Conjure Fey' },
           { name: 'Find the Path' },
           { name: 'Heal' },
-          { name: 'Heroes’ Feast' },
+          { name: "Heroes' Feast" },
           { name: 'Move Earth' },
           { name: 'Sunbeam' },
           { name: 'Transport via Plants' },
@@ -1432,7 +1424,7 @@ async function main() {
           'Locate Animals or Plants',
           'Locate Object',
           'Moonbeam',
-          'Pass without Trace',
+          'Pass Without Trace',
           'Protection from Poison',
           'Spike Growth'
         ],
@@ -1487,7 +1479,7 @@ async function main() {
           'Conjure Fey',
           'Find the Path',
           'Heal',
-          'Heroes’ Feast',
+          "Heroes' Feast",
           'Move Earth',
           'Sunbeam',
           'Transport via Plants',
@@ -1684,9 +1676,7 @@ async function main() {
       ],
       savingThrowProficiencies: ['STR', 'CON'],
       items: {
-        connect: [
-          // Add items appropriate for wizards here
-        ]
+        connect: []
       },
       proficiencyBonusByLevel: JSON.stringify({
         1: 2,
@@ -1718,9 +1708,7 @@ async function main() {
       pimarySpellAbilityScoreModifier: null,
       rageDamageByLevel: JSON.stringify({}),
       spells: {
-        connect: [
-          // Add items appropriate for wizards here
-        ]
+        connect: []
       },
       spellsByLevel: JSON.stringify({}),
       spellSlotsByLevel: JSON.stringify({}),
@@ -1903,9 +1891,7 @@ async function main() {
       proficiencies: ['Simple Weapon', 'Shortsword'],
       savingThrowProficiencies: ['STR', 'DEX'],
       items: {
-        connect: [
-          // Add items appropriate for wizards here
-        ]
+        connect: []
       },
       proficiencyBonusByLevel: JSON.stringify({
         1: 2,
@@ -1938,9 +1924,7 @@ async function main() {
       pimarySpellAbilityScoreModifier: null,
       rageDamageByLevel: JSON.stringify({}),
       spells: {
-        connect: [
-          // Add items appropriate for wizards here
-        ]
+        connect: []
       },
       spellsByLevel: JSON.stringify({}),
       spellSlotsByLevel: JSON.stringify({}),
@@ -1954,7 +1938,7 @@ async function main() {
         10: ['Purity of Body'],
         13: ['Tongue of the Sun and Moon'],
         14: ['Diamond Soul'],
-        15: ['Timeless Body'],
+        15: ['Timeless Body - Monk'],
         20: ['Perfect Self']
       }),
       subClassAvailableAtLevel: 3,
@@ -2008,7 +1992,6 @@ async function main() {
       sorceryPointsByLevel: JSON.stringify({}),
       sneakAttackByLevel: JSON.stringify({}),
       invocationsKnownByLevel: JSON.stringify({}),
-      spellslotsBySpellLevelByLevel: JSON.stringify({}),
       cantripsKnownByLevel: JSON.stringify({}),
       spellsKnownByLevel: JSON.stringify({})
     }
@@ -2096,9 +2079,7 @@ async function main() {
       ],
       savingThrowProficiencies: ['WIS', 'CHA'],
       items: {
-        connect: [
-          // Add items appropriate for wizards here
-        ]
+        connect: []
       },
       proficiencyBonusByLevel: JSON.stringify({
         1: 2,
@@ -2342,7 +2323,7 @@ async function main() {
         15: ['Undying Sentinel']
       }),
       abilitiesByLevel: JSON.stringify({
-        3: ['Nature’s Wrath', 'Turn the Faithless'],
+        3: ["Nature's Wrath", 'Turn the Faithless'],
         20: ['Elder Champion']
       }),
       parentClass: {
@@ -2355,7 +2336,7 @@ async function main() {
     data: {
       name: 'Oath of Vengeance',
       description:
-        'The Oath of Vengeance is a solemn commitment to punish those who have committed a grievous sin. When evil forces slaughter helpless villagers, when an entire people turns against the will of the gods, when a thieves’ guild grows too violent and powerful, when a dragon rampages through the countryside—at times like these, paladins arise and swear an Oath of Vengeance to set right that which has gone wrong.',
+        "The Oath of Vengeance is a solemn commitment to punish those who have committed a grievous sin. When evil forces slaughter helpless villagers, when an entire people turns against the will of the gods, when a thieves' guild grows too violent and powerful, when a dragon rampages through the countryside—at times like these, paladins arise and swear an Oath of Vengeance to set right that which has gone wrong.",
       proficiencies: [],
       savingThrowProficiencies: [],
       spells: {
@@ -2409,9 +2390,7 @@ async function main() {
       ],
       savingThrowProficiencies: ['STR', 'DEX'],
       items: {
-        connect: [
-          // Add items appropriate for wizards here
-        ]
+        connect: []
       },
       proficiencyBonusByLevel: JSON.stringify({
         1: 2,
@@ -2454,7 +2433,7 @@ async function main() {
           { name: 'Fog Cloud' },
           { name: 'Goodberry' },
           { name: 'Hail of Thorns' },
-          { name: 'Hunter’s Mark' },
+          { name: "Hunter's Mark" },
           { name: 'Jump' },
           { name: 'Longstrider' },
           { name: 'Speak with Animals' },
@@ -2467,7 +2446,7 @@ async function main() {
           { name: 'Lesser Restoration' },
           { name: 'Locate Animals or Plants' },
           { name: 'Locate Object' },
-          { name: 'Pass without Trace' },
+          { name: 'Pass Without Trace' },
           { name: 'Protection from Poison' },
           { name: 'Silence' },
           { name: 'Spike Growth' },
@@ -2504,7 +2483,7 @@ async function main() {
           'Fog Cloud',
           'Goodberry',
           'Hail of Thorns',
-          'Hunter’s Mark',
+          "Hunter's Mark",
           'Jump',
           'Longstrider',
           'Speak with Animals'
@@ -2519,7 +2498,7 @@ async function main() {
           'Lesser Restoration',
           'Locate Animals or Plants',
           'Locate Object',
-          'Pass without Trace',
+          'Pass Without Trace',
           'Protection from Poison',
           'Silence',
           'Spike Growth'
@@ -2576,7 +2555,7 @@ async function main() {
       skillsByLevel: JSON.stringify({
         1: ['Favored Enemy', 'Natural Explorer'],
         5: ['Extra Attack'],
-        8: ['Land’s Stride'],
+        8: ["Land's Stride"],
         14: ['Vanish'],
         18: ['Feral Senses'],
         20: ['Foe Slayer']
@@ -2620,7 +2599,7 @@ async function main() {
     data: {
       name: 'Hunter',
       description:
-        'Emulating the Hunter archetype means accepting your place as a bulwark between civilization and the terrors of the wilderness. As you walk the Hunter’s path, you learn specialized techniques for fighting the threats you face, from rampaging ogres and hordes of orcs to towering giants and terrifying dragons.',
+        "Emulating the Hunter archetype means accepting your place as a bulwark between civilization and the terrors of the wilderness. As you walk the Hunter's path, you learn specialized techniques for fighting the threats you face, from rampaging ogres and hordes of orcs to towering giants and terrifying dragons.",
       proficiencies: [],
       savingThrowProficiencies: [],
       spells: {},
@@ -2643,7 +2622,7 @@ async function main() {
       spells: {},
       spellsByLevel: JSON.stringify({}),
       skillsByLevel: JSON.stringify({
-        3: ['Ranger’s Companion'],
+        3: ["Ranger's Companion"],
         7: ['Exceptional Training'],
         11: ['Bestial Fury'],
         15: ['Share Spells']
@@ -2669,13 +2648,11 @@ async function main() {
         'Longsword',
         'Rapier',
         'Shortsword',
-        'Thieves’ Tools'
+        "Thieves' Tools"
       ],
       savingThrowProficiencies: ['DEX', 'INT'],
       items: {
-        connect: [
-          // Add items appropriate for wizards here
-        ]
+        connect: []
       },
       proficiencyBonusByLevel: JSON.stringify({
         1: 2,
@@ -2708,14 +2685,12 @@ async function main() {
       pimarySpellAbilityScoreModifier: null,
       rageDamageByLevel: JSON.stringify({}),
       spells: {
-        connect: [
-          // Add items appropriate for wizards here
-        ]
+        connect: []
       },
       spellsByLevel: JSON.stringify({}),
       spellSlotsByLevel: JSON.stringify({}),
       skillsByLevel: JSON.stringify({
-        1: ['Thieves’ Cant'],
+        1: ["Thieves' Cant"],
         2: ['Cunning Action'],
         5: ['Uncanny Dodge'],
         7: ['Evasion'],
@@ -2762,7 +2737,7 @@ async function main() {
     data: {
       name: 'Thief',
       description:
-        'You hone your skills in the larcenous arts. Burglars, bandits, cutpurses, and other criminals typically follow this archetype, but so do rogues who prefer to think of themselves as professional treasure seekers, explorers, delvers, and investigators. In addition to improving your agility and stealth, you learn skills useful for delving into ancient ruins, reading unfamiliar languages, and using magic items you normally couldn’t employ.',
+        "You hone your skills in the larcenous arts. Burglars, bandits, cutpurses, and other criminals typically follow this archetype, but so do rogues who prefer to think of themselves as professional treasure seekers, explorers, delvers, and investigators. In addition to improving your agility and stealth, you learn skills useful for delving into ancient ruins, reading unfamiliar languages, and using magic items you normally couldn't employ.",
       proficiencies: [],
       savingThrowProficiencies: [],
       spells: {},
@@ -2771,7 +2746,7 @@ async function main() {
         3: ['Fast Hands', 'Second-Story Work'],
         9: ['Supreme Sneak'],
         13: ['Use Magic Device'],
-        17: ['Thief’s Reflexes']
+        17: ["Thief's Reflexes"]
       }),
       abilitiesByLevel: JSON.stringify({}),
       parentClass: {
@@ -2907,9 +2882,7 @@ async function main() {
       ],
       savingThrowProficiencies: ['CON', 'CHA'],
       items: {
-        connect: [
-          // Add items appropriate for wizards here
-        ]
+        connect: []
       },
       proficiencyBonusByLevel: JSON.stringify({
         1: 2,
@@ -3349,9 +3322,7 @@ async function main() {
       proficiencies: ['Light Armor', 'Simple Weapon'],
       savingThrowProficiencies: ['WIS', 'CHA'],
       items: {
-        connect: [
-          // Add items appropriate for wizards here
-        ]
+        connect: []
       },
       proficiencyBonusByLevel: JSON.stringify({
         1: 2,
@@ -3386,6 +3357,7 @@ async function main() {
       spells: {
         connect: [
           { name: 'Armor of Agathys' },
+          { name: 'Eldritch Blast' },
           { name: 'Arms of Hadar' },
           { name: 'Charm Person' },
           { name: 'Comprehend Languages' },
@@ -3455,6 +3427,7 @@ async function main() {
         1: [
           'Armor of Agathys',
           'Arms of Hadar',
+          'Eldritch Blast',
           'Charm Person',
           'Comprehend Languages',
           'Expeditious Retreat',
@@ -3730,9 +3703,7 @@ async function main() {
       ],
       savingThrowProficiencies: ['INT', 'WIS'],
       items: {
-        connect: [
-          // Add items appropriate for wizards here
-        ]
+        connect: []
       },
       proficiencyBonusByLevel: JSON.stringify({
         1: 2,
@@ -3801,8 +3772,8 @@ async function main() {
           { name: 'Shield' },
           { name: 'Silent Image' },
           { name: 'Sleep' },
-          { name: 'Tasha’s Hideous Laughter' },
-          { name: 'Tenser’s Floating Disk' },
+          { name: "Tasha's Hideous Laughter" },
+          { name: "Tenser's Floating Disk" },
           { name: 'Thunderwave' },
           { name: 'Unseen Servant' },
           { name: 'Witch Bolt' },
@@ -3827,10 +3798,10 @@ async function main() {
           { name: 'Locate Object' },
           { name: 'Magic Mouth' },
           { name: 'Magic Weapon' },
-          { name: 'Melf’s Acid Arrow' },
+          { name: "Melf's Acid Arrow" },
           { name: 'Mirror Image' },
           { name: 'Misty Step' },
-          { name: 'Nystul’s Magic Aura' },
+          { name: "Nystul's Magic Aura" },
           { name: 'Phantasmal Force' },
           { name: 'Ray of Enfeeblement' },
           { name: 'Rope Trick' },
@@ -3850,7 +3821,7 @@ async function main() {
           { name: 'Gaseous Form' },
           { name: 'Haste' },
           { name: 'Hypnotic Pattern' },
-          { name: 'Leomund’s Tiny Hut' },
+          { name: "Leomund's Tiny Hut" },
           { name: 'Lightning Bolt' },
           { name: 'Magic Circle' },
           { name: 'Major Image' },
@@ -3869,7 +3840,7 @@ async function main() {
           { name: 'Animate Dead' },
           { name: 'Arcane Eye' },
           { name: 'Banishment' },
-          { name: 'Black Tentacles' },
+          { name: "Evard's Black Tentacles" },
           { name: 'Blight' },
           { name: 'Confusion' },
           { name: 'Conjure Minor Elementals' },
@@ -3877,20 +3848,17 @@ async function main() {
           { name: 'Control Water' },
           { name: 'Dimension Door' },
           { name: 'Divination' },
-          { name: 'Evard’s Black Tentacles' },
           { name: 'Fabricate' },
-          { name: 'Faithful Hound' },
           { name: 'Fire Shield' },
           { name: 'Greater Invisibility' },
           { name: 'Ice Storm' },
-          { name: 'Leomund’s Secret Chest' },
+          { name: "Leomund's Secret Chest" },
           { name: 'Locate Creature' },
-          { name: 'Mordenkainen’s Faithful Hound' },
-          { name: 'Mordenkainen’s Private Sanctum' },
-          { name: 'Otiluke’s Resilient Sphere' },
+          { name: "Mordenkainen's Faithful Hound" },
+          { name: "Mordenkainen's Private Sanctum" },
+          { name: "Otiluke's Resilient Sphere" },
           { name: 'Phantasmal Killer' },
           { name: 'Polymorph' },
-          { name: 'Secret Chest' },
           { name: 'Stone Shape' },
           { name: 'Stoneskin' },
           { name: 'Wall of Fire' },
@@ -3921,7 +3889,7 @@ async function main() {
           { name: 'Contingency' },
           { name: 'Create Undead' },
           { name: 'Disintegrate' },
-          { name: 'Drawmij’s Instant Summons' },
+          { name: "Drawmij's Instant Summons" },
           { name: 'Eyebite' },
           { name: 'Flesh to Stone' },
           { name: 'Globe of Invulnerability' },
@@ -3929,8 +3897,8 @@ async function main() {
           { name: 'Magic Jar' },
           { name: 'Mass Suggestion' },
           { name: 'Move Earth' },
-          { name: 'Otiluke’s Freezing Sphere' },
-          { name: 'Otto’s Irresistible Dance' },
+          { name: "Otiluke's Freezing Sphere" },
+          { name: "Otto's Irresistible Dance" },
           { name: 'Programmed Illusion' },
           { name: 'Scatter' },
           { name: 'Sequester' },
@@ -3949,7 +3917,6 @@ async function main() {
           { name: 'Maze' },
           { name: 'Mind Blank' },
           { name: 'Power Word Stun' },
-          { name: 'Prismatic Wall' },
           { name: 'Shapechange' },
           { name: 'Time Stop' },
           { name: 'True Polymorph' },
@@ -3961,10 +3928,6 @@ async function main() {
           { name: 'Meteor Swarm' },
           { name: 'Power Word Kill' },
           { name: 'Prismatic Wall' },
-          { name: 'Shapechange' },
-          { name: 'Time Stop' },
-          { name: 'True Polymorph' },
-          { name: 'Weird' },
           { name: 'Wish' }
         ]
       },
@@ -3993,8 +3956,8 @@ async function main() {
           'Shield',
           'Silent Image',
           'Sleep',
-          'Tasha’s Hideous Laughter',
-          'Tenser’s Floating Disk',
+          "Tasha's Hideous Laughter",
+          "Tenser's Floating Disk",
           'Thunderwave',
           'Unseen Servant',
           'Witch Bolt'
@@ -4021,10 +3984,10 @@ async function main() {
           'Locate Object',
           'Magic Mouth',
           'Magic Weapon',
-          'Melf’s Acid Arrow',
+          "Melf's Acid Arrow",
           'Mirror Image',
           'Misty Step',
-          'Nystul’s Magic Aura',
+          "Nystul's Magic Aura",
           'Phantasmal Force',
           'Ray of Enfeeblement',
           'Rope Trick',
@@ -4046,7 +4009,7 @@ async function main() {
           'Gaseous Form',
           'Haste',
           'Hypnotic Pattern',
-          'Leomund’s Tiny Hut',
+          "Leomund's Tiny Hut",
           'Lightning Bolt',
           'Magic Circle',
           'Major Image',
@@ -4074,17 +4037,17 @@ async function main() {
           'Control Water',
           'Dimension Door',
           'Divination',
-          'Evard’s Black Tentacles',
+          "Evard's Black Tentacles",
           'Fabricate',
           'Faithful Hound',
           'Fire Shield',
           'Greater Invisibility',
           'Ice Storm',
-          'Leomund’s Secret Chest',
+          "Leomund's Secret Chest",
           'Locate Creature',
-          'Mordenkainen’s Faithful Hound',
-          'Mordenkainen’s Private Sanctum',
-          'Otiluke’s Resilient Sphere',
+          "Mordenkainen's Faithful Hound",
+          "Mordenkainen's Private Sanctum",
+          "Otiluke's Resilient Sphere",
           'Phantasmal Killer',
           'Polymorph',
           'Secret Chest',
@@ -4122,7 +4085,7 @@ async function main() {
           'Contingency',
           'Create Undead',
           'Disintegrate',
-          'Drawmij’s Instant Summons',
+          "Drawmij's Instant Summons",
           'Eyebite',
           'Flesh to Stone',
           'Globe of Invulnerability',
@@ -4130,8 +4093,8 @@ async function main() {
           'Magic Jar',
           'Mass Suggestion',
           'Move Earth',
-          'Otiluke’s Freezing Sphere',
-          'Otto’s Irresistible Dance',
+          "Otiluke's Freezing Sphere",
+          "Otto's Irresistible Dance",
           'Programmed Illusion',
           'Scatter',
           'Sequester',
@@ -4145,7 +4108,7 @@ async function main() {
           'Forcecage',
           'Magnificent Mansion',
           'Mirage Arcane',
-          'Mordenkainen’s Sword',
+          "Mordenkainen's Sword",
           'Plane Shift',
           'Prismatic Spray',
           'Project Image',
@@ -4443,6 +4406,8 @@ async function main() {
       }
     }
   });
+
+  console.log('Classes seeded successfully.');
 }
 
 main()
