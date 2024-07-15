@@ -12,7 +12,6 @@ const getRaces = async (req, res) => {
 
 const getRaceById = async (req, res) => {
   const { id } = req.params;
-  console.log(id);
   try {
     const raceById = await prisma.race.findUnique({
       where: {
@@ -20,7 +19,6 @@ const getRaceById = async (req, res) => {
       },
     });
     if (raceById) {
-      console.log("Race found:", raceById);
       return res.status(200).json(raceById); // Use 200 for successful GET request
     } else {
       return res.status(404).json({ msg: "Race not found" }); // 404 if not found
