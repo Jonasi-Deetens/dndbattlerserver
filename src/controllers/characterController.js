@@ -31,25 +31,25 @@ const addCharacter = async (req, res) => {
   const { characterData } = req.body;
   try {
     console.log(characterData);
-    const { languages, ...characterInfo } = characterData;
-    const character = await prisma.character.create({
-      data: {
-        ...characterInfo,
-        languages: {
-          create: languages.map(language => ({
-            language: { connect: { id: language.id } }
-          }))
-        }
-      },
-      include: {
-        languages: {
-          include: {
-            language: true
-          }
-        }
-      }
-    });
-    return res.status(201).json({ character });
+    // const { languages, ...characterInfo } = characterData;
+    // const character = await prisma.character.create({
+    //   data: {
+    //     ...characterInfo,
+    //     languages: {
+    //       create: languages.map(language => ({
+    //         language: { connect: { id: language.id } }
+    //       }))
+    //     }
+    //   },
+    //   include: {
+    //     languages: {
+    //       include: {
+    //         language: true
+    //       }
+    //     }
+    //   }
+    // });
+    // return res.status(201).json({ character });
   } catch (error) {
     return res.status(500).json({ msg: 'Server error' });
   }

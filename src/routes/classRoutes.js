@@ -1,12 +1,14 @@
-import express from "express";
+import express from 'express';
 import {
   getClasses,
   getSpellsFromClass,
-} from "../controllers/classController.js";
+  getClassById
+} from '../controllers/classController.js';
 
 const classRouter = express.Router();
 
-classRouter.get("/", getClasses);
-classRouter.get("/spells/:className", getSpellsFromClass);
+classRouter.get('/', getClasses);
+classRouter.get('/byId/:id', getClassById);
+classRouter.get('/spells/:className', getSpellsFromClass);
 
 export default classRouter;
