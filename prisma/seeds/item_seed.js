@@ -105,6 +105,13 @@ async function main() {
       cost: '10 gp',
       attributes: { AC: 2 }
     },
+    {
+      name: 'Wooden Shield',
+      type: 'Shield',
+      weight: 4.0,
+      cost: '5 gp',
+      attributes: { AC: 2 }
+    },
 
     // Simple Melee Weapons
     {
@@ -505,6 +512,16 @@ async function main() {
       weight: 0.1,
       cost: '50 gp',
       attributes: {}
+    },
+    {
+      name: 'Arcane Focus',
+      type: 'Adventuring Gear',
+      weight: 1.0,
+      cost: '10 gp',
+      attributes: {
+        Description:
+          "An arcane focus is a special item—an orb, a crystal, a rod, a specially constructed staff, a wand-like length of wood, or some similar item—designed to channel the power of arcane spells. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus, as described in chapter 10 of the Player's Handbook."
+      }
     },
     {
       name: 'Backpack',
@@ -1185,6 +1202,218 @@ async function main() {
       type: 'Tool',
       weight: 5.0,
       cost: '1 gp',
+      attributes: {}
+    },
+
+    // Diplomat's Pack
+    {
+      name: "Diplomat's Pack",
+      type: 'Adventuring Gear',
+      weight: 36.0,
+      cost: '39 gp',
+      attributes: {
+        Contents: [
+          'Chest',
+          '2 Cases for maps and scrolls',
+          'Clothes, Fine',
+          'Ink, 1 ounce bottle',
+          'Ink pen',
+          'Lamp',
+          '2 Flasks of oil',
+          '5 Sheets of paper',
+          'Vial of perfume',
+          'Sealing wax',
+          'Soap'
+        ]
+      }
+    },
+
+    // Entertainer's Pack
+    {
+      name: "Entertainer's Pack",
+      type: 'Adventuring Gear',
+      weight: 38.0,
+      cost: '40 gp',
+      attributes: {
+        Contents: [
+          'Backpack',
+          'Bedroll',
+          '2 Costumes',
+          '5 Candles',
+          '5 Days of rations',
+          'Waterskin',
+          'Disguise kit'
+        ]
+      }
+    },
+    {
+      name: "Explorer's Pack",
+      type: 'Adventuring Gear',
+      weight: 59.0,
+      cost: '10 gp',
+      attributes: {
+        Contents: [
+          'Backpack',
+          'Bedroll',
+          'Mess kit',
+          'Tinderbox',
+          '10 Torches',
+          '10 Days of rations',
+          'Waterskin',
+          '50 feet of hempen rope'
+        ]
+      }
+    },
+    {
+      name: "Priest's Pack",
+      type: 'Adventuring Gear',
+      weight: 39.0,
+      cost: '19 gp',
+      attributes: {
+        Contents: [
+          'Backpack',
+          'Blanket',
+          '10 Candles',
+          'Tinderbox',
+          'Alms box',
+          '2 Blocks of incense',
+          'Censer',
+          'Vestments',
+          '2 Days of rations',
+          'Waterskin'
+        ]
+      }
+    },
+    {
+      name: "Dungeoneer's Pack",
+      type: 'Adventuring Gear',
+      weight: 61.5,
+      cost: '12 gp',
+      attributes: {
+        Contents: [
+          'Backpack',
+          'Crowbar',
+          'Hammer',
+          '10 Pitons',
+          '10 Torches',
+          'Tinderbox',
+          '10 Days of rations',
+          'Waterskin',
+          '50 feet of hempen rope'
+        ]
+      }
+    },
+    {
+      name: "Burglar's Pack",
+      type: 'Adventuring Gear',
+      weight: 52.0,
+      cost: '16 gp',
+      attributes: {
+        Contents: [
+          'Backpack',
+          'Bag of 1000 ball bearings',
+          '10 feet of string',
+          'Bell',
+          '5 Candles',
+          'Crowbar',
+          'Hammer',
+          '10 Pitons',
+          'Hooded lantern',
+          '2 flasks of oil',
+          '5 days of rations',
+          'Tinderbox',
+          'Waterskin',
+          '50 feet of hempen rope'
+        ]
+      }
+    },
+    {
+      name: "Scholar's Pack",
+      type: 'Adventuring Gear',
+      weight: 10.0,
+      cost: '40 gp',
+      attributes: {
+        Contents: [
+          'Backpack',
+          'Book of lore',
+          'Bottle of ink',
+          'Ink pen',
+          '10 sheets of parchment',
+          'Little bag of sand',
+          'Small knife'
+        ]
+      }
+    },
+
+    // Musical Instruments
+    {
+      name: 'Bagpipes',
+      type: 'Musical Instrument',
+      weight: 6.0,
+      cost: '30 gp',
+      attributes: {}
+    },
+    {
+      name: 'Drum',
+      type: 'Musical Instrument',
+      weight: 3.0,
+      cost: '6 gp',
+      attributes: {}
+    },
+    {
+      name: 'Dulcimer',
+      type: 'Musical Instrument',
+      weight: 10.0,
+      cost: '25 gp',
+      attributes: {}
+    },
+    {
+      name: 'Flute',
+      type: 'Musical Instrument',
+      weight: 1.0,
+      cost: '2 gp',
+      attributes: {}
+    },
+    {
+      name: 'Lute',
+      type: 'Musical Instrument',
+      weight: 2.0,
+      cost: '35 gp',
+      attributes: {}
+    },
+    {
+      name: 'Lyre',
+      type: 'Musical Instrument',
+      weight: 2.0,
+      cost: '30 gp',
+      attributes: {}
+    },
+    {
+      name: 'Horn',
+      type: 'Musical Instrument',
+      weight: 2.0,
+      cost: '3 gp',
+      attributes: {}
+    },
+    {
+      name: 'Pan Flute',
+      type: 'Musical Instrument',
+      weight: 2.0,
+      cost: '12 gp',
+      attributes: {}
+    },
+    {
+      name: 'Shawm',
+      type: 'Musical Instrument',
+      weight: 1.0,
+      cost: '2 gp',
+      attributes: {}
+    },
+    {
+      name: 'Viol',
+      type: 'Musical Instrument',
+      weight: 1.0,
+      cost: '30 gp',
       attributes: {}
     }
   ];

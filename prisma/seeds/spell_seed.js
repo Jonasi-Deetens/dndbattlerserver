@@ -239,6 +239,58 @@ async function main() {
       }
     },
     {
+      name: 'Gust',
+      spellLevel: 0, // Cantrip
+      castingTime: 1, // 1 action
+      range: 30, // 30 feet
+      area: 0,
+      school: 'TRANSMUTATION',
+      components: ['V', 'S'],
+      description:
+        'You seize the air and compel it to create one of the following effects at a point you can see within range: \n' +
+        '1. One Medium or smaller creature that you choose must succeed on a Strength saving throw or be pushed up to 5 feet away from you. \n' +
+        '2. You create a small blast of air capable of moving one object that is neither held nor carried and that weighs no more than 5 pounds. The object is pushed up to 10 feet away from you. It isn’t pushed with enough force to cause damage. \n' +
+        '3. You create a harmless sensory effect using air, such as causing leaves to rustle, wind to slam shutters closed, or your clothing to ripple in a breeze.',
+      effectType: 'UTILITY',
+      duration: 0, // Instantaneous
+      concentration: false,
+      ritual: false,
+      spellEffects: {
+        create: [
+          {
+            targetType: 'Creature',
+            effectType: 'CONTROL',
+            value: JSON.stringify({
+              action: 'push',
+              distance: '5 feet',
+              condition: 'Strength save'
+            })
+          },
+          {
+            targetType: 'Object',
+            effectType: 'CONTROL',
+            value: JSON.stringify({
+              action: 'push',
+              distance: '10 feet',
+              weightLimit: '5 pounds'
+            })
+          },
+          {
+            targetType: 'Area',
+            effectType: 'UTILITY',
+            value: JSON.stringify({
+              action: 'harmless sensory effect',
+              examples: [
+                'leaves rustle',
+                'wind slams shutters',
+                'clothing ripples'
+              ]
+            })
+          }
+        ]
+      }
+    },
+    {
       name: 'Hurl Through Hell',
       spellLevel: 0,
       castingTime: 0, // 1 action
@@ -450,6 +502,42 @@ async function main() {
       }
     },
     {
+      name: 'Produce Flame',
+      spellLevel: 0, // Cantrip
+      castingTime: 1, // 1 action
+      range: 0, // Self
+      area: 10, // 10-foot radius
+      school: 'CONJURATION',
+      components: ['V', 'S'],
+      description:
+        'A flickering flame appears in your hand. The flame remains there for the duration and harms neither you nor your equipment. The flame sheds bright light in a 10-foot radius and dim light for an additional 10 feet. The spell ends if you dismiss it as an action or if you cast it again. You can also attack with the flame, although doing so ends the spell. When you cast this spell, or as an action on a later turn, you can hurl the flame at a creature within 30 feet of you. Make a ranged spell attack. On a hit, the target takes 1d8 fire damage. This spell’s damage increases by 1d8 when you reach 5th level (2d8), 11th level (3d8), and 17th level (4d8).',
+      effectType: 'DAMAGE',
+      duration: 10, // 10 minutes
+      concentration: false,
+      ritual: false,
+      spellEffects: {
+        create: [
+          {
+            targetType: 'Creature',
+            effectType: 'DAMAGE',
+            value: JSON.stringify({
+              damageType: 'FIRE',
+              dice: '1d8', // Increases at higher levels
+              duration: 10 // Flame lasts for 10 minutes
+            })
+          },
+          {
+            targetType: 'Area',
+            effectType: 'UTILITY',
+            value: JSON.stringify({
+              brightLightRadius: 10, // Bright light radius
+              dimLightRadius: 20 // Additional dim light radius
+            })
+          }
+        ]
+      }
+    },
+    {
       name: 'Ray of Frost',
       spellLevel: 0,
       castingTime: 0, // Action
@@ -614,6 +702,34 @@ async function main() {
       }
     },
     {
+      name: 'Thorn Whip',
+      spellLevel: 0, // Cantrip
+      castingTime: 1, // 1 action
+      range: 30, // 30 feet
+      area: 0,
+      school: 'TRANSMUTATION',
+      components: ['V', 'S', 'M'],
+      description:
+        'You create a long, vine-like whip covered in thorns that lashes out at your command toward a creature in range. Make a melee spell attack against the target. If the attack hits, the creature takes 1d6 piercing damage, and if the creature is Large or smaller, you pull the creature up to 10 feet closer to you. The spell’s damage increases by 1d6 when you reach 5th level (2d6), 11th level (3d6), and 17th level (4d6).',
+      effectType: 'DAMAGE',
+      duration: 0, // Instantaneous
+      concentration: false,
+      ritual: false,
+      spellEffects: {
+        create: [
+          {
+            targetType: 'Creature',
+            effectType: 'DAMAGE',
+            value: JSON.stringify({
+              damageType: 'PIERCING',
+              dice: '1d6',
+              pull: 10
+            })
+          }
+        ]
+      }
+    },
+    {
       name: 'True Strike',
       spellLevel: 0,
       castingTime: 0, // Action
@@ -633,6 +749,35 @@ async function main() {
             targetType: 'Creature',
             effectType: 'UTILITY',
             value: JSON.stringify({ advantage: 'next attack roll' })
+          }
+        ]
+      }
+    },
+    {
+      name: 'Vicious Mockery',
+      spellLevel: 0, // Cantrip
+      castingTime: 1, // 1 action
+      range: 60, // 60 feet
+      area: 0,
+      school: 'ENCHANTMENT',
+      components: ['V'],
+      description:
+        'You unleash a string of insults laced with subtle enchantments at a creature you can see within range. If the target can hear you (though it need not understand you), it must succeed on a Wisdom saving throw or take 1d4 psychic damage and have disadvantage on the next attack roll it makes before the end of its next turn. This spell’s damage increases by 1d4 when you reach 5th level (2d4), 11th level (3d4), and 17th level (4d4).',
+      effectType: 'DAMAGE',
+      duration: 0, // Instantaneous
+      concentration: false,
+      ritual: false,
+      spellEffects: {
+        create: [
+          {
+            targetType: 'Creature',
+            effectType: 'DAMAGE',
+            value: JSON.stringify({
+              damageType: 'PSYCHIC',
+              dice: '1d4', // Increases at higher levels
+              disadvantageOnAttack: true,
+              duration: 1 // Until the end of its next turn
+            })
           }
         ]
       }
