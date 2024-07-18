@@ -41,14 +41,15 @@ model Character {
   secondaryGoals    String[]
   personalQuest     String?
   relationships     Relationship[]
+  proficiencies     String[];
   backstory         String
   currentLocation   String
   skills            Skill[]
   languages         Language[]
-  ideals            String[]
-  bonds             String[]
-  flaws             String[]
-  fears             String[]
+  ideals            Ideal[]
+  bonds             Bond[]
+  flaws             Flaw[]
+  fears             Fear[]
   savingThrows      String[]
   magicSavingThrows String[]
   advantages        String[]
@@ -92,13 +93,14 @@ model Npc {
   personalQuest     String?
   relationships     Relationship[]
   organizations     Organization[]
+  proficiencies     String[];
   backstory         String
   currentLocation   String
   languages         Language[]
-  ideals            String[]
-  bonds             String[]
-  flaws             String[]
-  fears             String[]
+  ideals            Ideal[]
+  bonds             Bond[]
+  flaws             Flaw[]
+  fears             Fear[]
   savingThrows      String[]
   advantages        String[]
   disadvantages     String[]
@@ -211,6 +213,43 @@ enum FightingStyle {
   TWO_WEAPON_FIGHTING
 }
 
+enum Ideal {
+  RESPECT
+  FAIRNESS
+  GREED
+  FREEDOM
+  CHARITY
+  KNOWLEDGE
+}
+
+enum Bond {
+  FAMILY
+  HONOR
+  REVENGE
+  FRIENDSHIP
+  DUTY
+  REDEMPTION
+}
+
+enum Flaw {
+  ARROGANCE
+  GREED
+  IMPULSIVENESS
+  COWARDICE
+  PARANOIA
+  ADDICTION
+}
+
+enum Fear {
+  DARKNESS
+  HEIGHTS
+  FAILURE
+  SOLITUDE
+  WATER
+  MAGIC
+  LOSING_PEOPLE
+}
+
 enum School {
   ABJURATION
   CONJURATION
@@ -221,6 +260,18 @@ enum School {
   NECROMANCY
   TRANSMUTATION
   TRANSFIGURATION
+}
+
+enum Alignment {
+  LAWFUL_GOOD
+  NEUTRAL_GOOD
+  CHAOTIC_GOOD
+  LAWFUL_NEUTRAL
+  TRUE_NEUTRAL
+  CHAOTIC_NEUTRAL
+  LAWFUL_EVIL
+  NEUTRAL_EVIL
+  CHAOTIC_EVIL
 }
 
 enum Dice {
