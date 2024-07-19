@@ -41,7 +41,21 @@ model Character {
   secondaryGoals    String[]
   personalQuest     String?
   relationships     Relationship[]
-  proficiencies     String[];
+  proficiencies     String[]
+  proficiencyBonus  Int
+  spellSlots        Int[]
+  primaryAbilityScoreModifier  AbilityScore?
+  primarySpellAbilityScoreModifier  AbilityScore?
+  exhaustionLevel   Int
+  numberOfRages     Int
+  rageDamage        Int
+  kiPoints          Int
+  sorceryPoints     Int
+  invocationsKnown  Int
+  sneakAttackBy     Int
+  cantripsKnown     Int
+  spellsKnown       Int
+  fightingStyles    FightingStyle[]
   backstory         String
   currentLocation   String
   skills            Skill[]
@@ -164,7 +178,7 @@ model Class {
   abilitiesByLevel          Json
   buffsByLevel              Json
   primaryAbilityScoreModifier AbilityScore?
-  pimarySpellAbilityScoreModifier AbilityScore?
+  primarySpellAbilityScoreModifier AbilityScore?
   subClasses                Subclass[]
   rageDamageByLevel         Json?
   spells                    Spell[]
@@ -196,7 +210,7 @@ model Subclass {
   spells                    Spell[]  // List of spells available to the subclass
   spellsByLevel             Json     // JSON object mapping levels to available spells
   skillsByLevel             Json     // JSON object mapping levels to granted skills
-  abilitiesByLevel          Json     // JSON object mapping levels to granted abilities 
+  abilitiesByLevel          Json     // JSON object mapping levels to granted abilities
   spellslotsBySpellLevelByLevel Json?  // JSON object mapping levels to amount of spell slots per spell level
   cantripsKnownByLevel      Json?  // JSON object mapping levels to amount of cantrips
   spellsKnownByLevel        Json?  // JSON object mapping levels to amount of spells
@@ -356,13 +370,13 @@ model Spell {
   boostedBySpellModifier Boolean? // For spells that have + spellcasting ability modifier
   rollByCharacterLevel   Boolean? // Indicates if the roll is based on character level
   rollBySpellSlot        Boolean? // Indicates if the roll is based on spell slot level
-  race                   Race[]         
-  class                  Class[]         
-  subClasses             Subclass[]         
-  subrace                Subrace[]    
-  Character              Character[]  
-  Npc                    Npc[]       
-  Monster                Monster[]   
+  race                   Race[]
+  class                  Class[]
+  subClasses             Subclass[]
+  subrace                Subrace[]
+  Character              Character[]
+  Npc                    Npc[]
+  Monster                Monster[]
 }
 
 model SpellEffect {
@@ -413,7 +427,7 @@ model Ability {
   buffs       String?  // Nullable field to store buffs or additional effects if applicable
   duration    String?  // Nullable field to store the duration of the ability
   range       String?  // Nullable field to store the range of the ability
-  actionType  String? 
+  actionType  String?
   characters  Character[]
   npcs        Npc[]
   monsters    Monster[]
