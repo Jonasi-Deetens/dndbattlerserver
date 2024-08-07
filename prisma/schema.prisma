@@ -107,7 +107,7 @@ model Npc {
   personalQuest     String?
   relationships     Relationship[]
   organizations     Organization[]
-  proficiencies     String[];
+  proficiencies     String[]
   backstory         String
   currentLocation   String
   languages         Language[]
@@ -205,7 +205,7 @@ model Subclass {
   name                      String   @unique
   description               String
   proficiencies             String[] // List of proficiencies granted by the subclass
-  pimarySpellAbilityScoreModifier AbilityScore?
+  primarySpellAbilityScoreModifier AbilityScore?
   savingThrowProficiencies  AbilityScore[] // List of saving throw proficiencies
   spells                    Spell[]  // List of spells available to the subclass
   spellsByLevel             Json     // JSON object mapping levels to available spells
