@@ -8,7 +8,7 @@ CREATE TYPE "School" AS ENUM ('ABJURATION', 'CONJURATION', 'DIVINATION', 'ENCHAN
 CREATE TYPE "Dice" AS ENUM ('D4', 'D6', 'D8', 'D10', 'D12', 'D20', 'D100');
 
 -- CreateEnum
-CREATE TYPE "AbilityScore" AS ENUM ('STR', 'DEX', 'CON', 'INT', 'WIS', 'CHA');
+CREATE TYPE "AbilityScore" AS ENUM ('Strength', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Charisma');
 
 -- CreateEnum
 CREATE TYPE "EffectType" AS ENUM ('BUFF', 'DEBUFF', 'HEALING', 'DAMAGE', 'CONTROL', 'SUMMONING', 'UTILITY', 'PROTECTION', 'MOVEMENT', 'DETECTION', 'TRANSFORMATION', 'TRANSPORTATION', 'RESTORATION', 'INSTANT_DEATH', 'COMMUNICATION', 'ILLUSION');

@@ -34,55 +34,78 @@ const addCharacter = async (req, res) => {
     const {
       languages,
       skills,
+      obstacles,
+      memberships,
+      relationships,
       items,
       abilities,
       spells,
       senses,
-      race,
-      subrace,
-      class: charClass,
-      subclass,
+      raceId,
+      subraceId,
+      classId,
+      subclassId,
+      userId,
       ...characterInfo
     } = characterData;
 
-    const character = await prisma.character.create({
-      data: {
-        ...characterInfo,
-        race: { connect: { id: race.id } },
-        subrace: subrace ? { connect: { id: subrace.id } } : undefined,
-        class: { connect: { id: charClass.id } },
-        subclass: subclass ? { connect: { id: subclass.id } } : undefined,
-        languages: {
-          connect: languages.map((language) => ({
-            id: language.id,
-          })),
-        },
-        skills: {
-          connect: skills.map((skill) => ({
-            id: skill.id,
-          })),
-        },
-        items: {
-          connect: items.map((item) => ({
-            id: item.id,
-          })),
-        },
-        senses: {
-          connect: senses.map((sense) => ({
-            id: sense.id,
-          })),
-        },
-        spells: {
-          connect: spells.map((spell) => ({
-            id: spell.id,
-          })),
-        },
-        abilities: {
-          connect: abilities.map((ability) => ({
-            id: ability.id,
-          })),
-        },
+    const data = {
+      ...characterInfo,
+      user: { connect: { id: userId } },
+      race: { connect: { id: raceId } },
+      class: { connect: { id: classId } },
+      languages: {
+        connect: languages.map((language) => ({
+          id: language.id,
+        })),
       },
+      skills: {
+        connect: skills.map((skill) => ({
+          id: skill.id,
+        })),
+      },
+      items: {
+        connect: items.map((item) => ({
+          id: item.id,
+        })),
+      },
+      senses: {
+        connect: senses.map((sense) => ({
+          id: sense.id,
+        })),
+      },
+      spells: {
+        connect: spells.map((spell) => ({
+          id: spell.id,
+        })),
+      },
+      abilities: {
+        connect: abilities.map((ability) => ({
+          id: ability.id,
+        })),
+      },
+      obstacles: {
+        connect: obstacles.map((obstacle) => ({
+          id: obstacle.id,
+        })),
+      },
+      memberships: {
+        connect: memberships.map((membership) => ({
+          id: membership.id,
+        })),
+      },
+      relationships: {
+        connect: relationships.map((relationship) => ({
+          id: relationship.id,
+        })),
+      },
+    };
+
+    if (subraceId) data.subrace = { connect: { id: subraceId } };
+    if (subclassId) data.subclass = { connect: { id: subclassId } };
+
+    const character = await prisma.character.create({
+      data,
       include: {
         race: true,
         subrace: true,
@@ -99,6 +122,7 @@ const addCharacter = async (req, res) => {
 
     return res.status(201).json({ character });
   } catch (error) {
+    console.error(error);
     return res.status(500).json({ msg: "Server error" });
   }
 };

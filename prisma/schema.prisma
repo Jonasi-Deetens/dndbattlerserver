@@ -35,7 +35,8 @@ model Character {
   raceId            Int
   classId           Int
   subraceId         Int?
-  background        String
+  subclassId         Int?
+  background        String?
   alignment         String
   primaryGoal       String
   secondaryGoals    String[]
@@ -44,26 +45,26 @@ model Character {
   proficiencies     String[]
   proficiencyBonus  Int
   spellSlots        Int[]
-  primaryAbilityScoreModifier  AbilityScore?
-  primarySpellAbilityScoreModifier  AbilityScore?
+  primaryAbilityScoreModifier  String?
+  primarySpellAbilityScoreModifier  String?
   exhaustionLevel   Int
   numberOfRages     Int
   rageDamage        Int
   kiPoints          Int
   sorceryPoints     Int
   invocationsKnown  Int
-  sneakAttackBy     Int
+  sneakAttack       Int
   cantripsKnown     Int
   spellsKnown       Int
-  fightingStyles    FightingStyle[]
-  backstory         String
+  fightingStyles    String[]
+  backstory         String?
   currentLocation   String
   skills            Skill[]
   languages         Language[]
-  ideals            Ideal[]
-  bonds             Bond[]
-  flaws             Flaw[]
-  fears             Fear[]
+  ideals            String[]
+  bonds             String[]
+  flaws             String[]
+  fears             String[]
   savingThrows      String[]
   magicSavingThrows String[]
   advantages        String[]
@@ -73,13 +74,10 @@ model Character {
   obstacles         Obstacle[]
   internalConflicts String[]
   vices             String[]
-  appearance        String
+  appearance        String?
   personalityTraits String[]
   items             Item[]
   spells            Spell[]
-  level             Int
-  experience        Int
-  health            Int
   stats             Json // Store HP, AC, etc. as JSON
   senses            Sense[]
   userId            String
@@ -87,6 +85,7 @@ model Character {
   race              Race           @relation(fields: [raceId], references: [id])
   class             Class          @relation(fields: [classId], references: [id])
   subrace           Subrace?       @relation(fields: [subraceId], references: [id])
+  subclass          Subclass?      @relation(fields: [subclassId], references: [id])
   abilities         Ability[]
   memberships       Membership[]
 }
@@ -111,10 +110,10 @@ model Npc {
   backstory         String
   currentLocation   String
   languages         Language[]
-  ideals            Ideal[]
-  bonds             Bond[]
-  flaws             Flaw[]
-  fears             Fear[]
+  ideals            String[]
+  bonds             String[]
+  flaws             String[]
+  fears             String[]
   savingThrows      String[]
   advantages        String[]
   disadvantages     String[]
@@ -152,7 +151,7 @@ model Monster {
   challengeRating  Float
   experienceReward Int
   actions          String[] // List of actions it can take
-  stats            Json // Store STR, DEX, etc. as JSON
+  stats            Json // Store Strength, Dexterity, etc. as JSON
   vulnerabilities  String[] // e.g., fire, ice
   resistances      String[] // e.g., poison, magic
   immunities       String[] // e.g., charm, fear
@@ -169,16 +168,16 @@ model Class {
   id                        Int      @id @default(autoincrement())
   name                      String   @unique
   description               String
-  hitDice                   Dice
+  hitDice                   String
   proficiencies             String[]
-  savingThrowProficiencies  AbilityScore[]
+  savingThrowProficiencies  String[]
   items                     Item[]
   proficiencyBonusByLevel   Json
   numberOfRagesByLevel      Json?
   abilitiesByLevel          Json
   buffsByLevel              Json
-  primaryAbilityScoreModifier AbilityScore?
-  primarySpellAbilityScoreModifier AbilityScore?
+  primaryAbilityScoreModifier String?
+  primarySpellAbilityScoreModifier String?
   subClasses                Subclass[]
   rageDamageByLevel         Json?
   spells                    Spell[]
@@ -187,7 +186,7 @@ model Class {
   skillsByLevel             Json
   subClassAvailableAtLevel  Int
   unusableItems             String[]
-  fightingStyles            FightingStyle[]
+  fightingStyles            String[]
   movementSpeedBonusByLevel Json
   exhaustionLevel           Int
   kiPointsByLevel           Json
@@ -205,8 +204,8 @@ model Subclass {
   name                      String   @unique
   description               String
   proficiencies             String[] // List of proficiencies granted by the subclass
-  primarySpellAbilityScoreModifier AbilityScore?
-  savingThrowProficiencies  AbilityScore[] // List of saving throw proficiencies
+  primarySpellAbilityScoreModifier String?
+  savingThrowProficiencies  String[] // List of saving throw proficiencies
   spells                    Spell[]  // List of spells available to the subclass
   spellsByLevel             Json     // JSON object mapping levels to available spells
   skillsByLevel             Json     // JSON object mapping levels to granted skills
@@ -216,131 +215,7 @@ model Subclass {
   spellsKnownByLevel        Json?  // JSON object mapping levels to amount of spells
   parentClassId             Int
   parentClass               Class     @relation(fields: [parentClassId], references: [id])
-}
-
-enum FightingStyle {
-  ARCHERY
-  DEFENSE
-  DUELING
-  GREAT_WEAPON_FIGHTING
-  PROTECTION
-  TWO_WEAPON_FIGHTING
-}
-
-enum Ideal {
-  RESPECT
-  FAIRNESS
-  GREED
-  FREEDOM
-  CHARITY
-  KNOWLEDGE
-}
-
-enum Bond {
-  FAMILY
-  HONOR
-  REVENGE
-  FRIENDSHIP
-  DUTY
-  REDEMPTION
-}
-
-enum Flaw {
-  ARROGANCE
-  GREED
-  IMPULSIVENESS
-  COWARDICE
-  PARANOIA
-  ADDICTION
-}
-
-enum Fear {
-  DARKNESS
-  HEIGHTS
-  FAILURE
-  SOLITUDE
-  WATER
-  MAGIC
-  LOSING_PEOPLE
-}
-
-enum School {
-  ABJURATION
-  CONJURATION
-  DIVINATION
-  ENCHANTMENT
-  EVOCATION
-  ILLUSION
-  NECROMANCY
-  TRANSMUTATION
-  TRANSFIGURATION
-}
-
-enum Alignment {
-  LAWFUL_GOOD
-  NEUTRAL_GOOD
-  CHAOTIC_GOOD
-  LAWFUL_NEUTRAL
-  TRUE_NEUTRAL
-  CHAOTIC_NEUTRAL
-  LAWFUL_EVIL
-  NEUTRAL_EVIL
-  CHAOTIC_EVIL
-}
-
-enum Dice {
-  D4
-  D6
-  D8
-  D10
-  D12
-  D20
-  D100
-}
-
-enum AbilityScore {
-  STR
-  DEX
-  CON
-  INT
-  WIS
-  CHA
-}
-
-enum EffectType {
-  BUFF
-  DEBUFF
-  HEALING
-  DAMAGE
-  CONTROL
-  SUMMONING
-  UTILITY
-  PROTECTION
-  MOVEMENT
-  DETECTION
-  TRANSFORMATION
-  TRANSPORTATION
-  RESTORATION
-  INSTANT_DEATH
-  COMMUNICATION
-  ILLUSION
-}
-
-enum DamageType {
-  ACID
-  BLUDGEONING
-  COLD
-  FIRE
-  FORCE
-  LIGHTNING
-  NECROTIC
-  PIERCING
-  POISON
-  PSYCHIC
-  RADIANT
-  SLASHING
-  THUNDER
-  VARIES
+  characters                Character[]
 }
 
 model Spell {
@@ -350,12 +225,12 @@ model Spell {
   castingTime            Int // In minutes (action = 0, bonus action = -1)
   range                  Int // In feet
   area                   Int // In feet
-  school                 School
+  school                 String
   components             String[]
-  savingThrows           AbilityScore?
+  savingThrows           String?
   description            String
-  damageType             DamageType?
-  effectType             EffectType
+  damageType             String?
+  effectType             String
   maxSpaceBetweenTargets Int? // In feet, like acid splash, max 5 feet between 2 targeted monsters
   statChanges            Json? // Max hp and hp increase or AC by level e.g. for the aid spell
   rolls                  Json? // The amount of times we roll the dice per level
@@ -364,8 +239,8 @@ model Spell {
   spellEffects           SpellEffect[]
   concentration          Boolean
   ritual                 Boolean
-  savingThrowBonusDice   Dice?
-  attackBonusDice        Dice?
+  savingThrowBonusDice   String?
+  attackBonusDice        String?
   bonusDamage            Int? // Rolls that are like 1d4 +1 (where the +1 is this bonus damage)
   boostedBySpellModifier Boolean? // For spells that have + spellcasting ability modifier
   rollByCharacterLevel   Boolean? // Indicates if the roll is based on character level
@@ -384,7 +259,7 @@ model SpellEffect {
   spellId    Int
   spell      Spell      @relation(fields: [spellId], references: [id])
   targetType String // e.g., 'Creature', 'Self', 'Area'
-  effectType EffectType
+  effectType String
   value      Json // Stores the effect's value, e.g., {"duration": 600, "condition": "Charmed"}
   @@unique([spellId, id])
 }
@@ -492,7 +367,7 @@ model Item {
 model Race {
   id                    Int            @id @default(autoincrement())
   name                  String         @unique
-  abilityScoreIncreases Json // JSON object to store ability score increases, e.g., { "STR": 1, "DEX": 2 }
+  abilityScoreIncreases Json // JSON object to store ability score increases, e.g., { "Strength": 1, "Dexterity": 2 }
   statIncreases         Json // JSON object to store stat score increases, e.g., { "HP": 1 }
   adultAge              Int
   maxAge                Int
@@ -506,7 +381,7 @@ model Race {
   raceDislikes          String[] // E.g. 'poison' -- This is for saving throws
   senses                Sense[]
   subraces              Subrace[] // Subraces associated with this race
-  magicSavingThrows     AbilityScore[]
+  magicSavingThrows     String[]
   spells                Spell[]
   skills                Skill[]
   characters            Character[]
@@ -518,7 +393,7 @@ model Subrace {
   name                  String
   parentRaceId          Int
   parentRace            Race        @relation(fields: [parentRaceId], references: [id])
-  abilityScoreIncreases Json // JSON object to store ability score increases, e.g., { "STR": 1, "DEX": 2 }
+  abilityScoreIncreases Json // JSON object to store ability score increases, e.g., { "Strength": 1, "Dexterity": 2 }
   statIncreases         Json? // JSON object to store stat score increases, e.g., { "HP": 1 }
   adultAge              Int
   maxAge                Int

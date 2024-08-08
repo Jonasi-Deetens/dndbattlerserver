@@ -29,7 +29,7 @@ async function main() {
         "Simple Weapon",
         "Martial Weapon",
       ],
-      savingThrowProficiencies: ["STR", "CON"],
+      savingThrowProficiencies: ["Strength", "Constitution"],
       items: {
         connect: [
           // Add items appropriate for wizards here
@@ -83,7 +83,7 @@ async function main() {
         1: ["Rage"],
       }),
       buffsByLevel: JSON.stringify({}),
-      primaryAbilityScoreModifier: "STR",
+      primaryAbilityScoreModifier: "Strength",
       primarySpellAbilityScoreModifier: null,
       rageDamageByLevel: JSON.stringify({
         1: 2,
@@ -218,7 +218,7 @@ async function main() {
         "Rapier",
         "Shortsword",
       ],
-      savingThrowProficiencies: ["DEX", "CHA"],
+      savingThrowProficiencies: ["Dexterity", "Charisma"],
       items: {
         connect: [],
       },
@@ -249,8 +249,8 @@ async function main() {
         6: ["Countercharm"],
       }),
       buffsByLevel: JSON.stringify({}),
-      primaryAbilityScoreModifier: "CHA",
-      primarySpellAbilityScoreModifier: "CHA",
+      primaryAbilityScoreModifier: "Charisma",
+      primarySpellAbilityScoreModifier: "Charisma",
       rageDamageByLevel: JSON.stringify({}),
       spells: {
         connect: [
@@ -633,7 +633,7 @@ async function main() {
         "A priestly champion who wields divine magic in service of a higher power",
       hitDice: "D8",
       proficiencies: ["Light Armor", "Medium Armor", "Shield", "Simple Weapon"],
-      savingThrowProficiencies: ["WIS", "CHA"],
+      savingThrowProficiencies: ["Wisdom", "Charisma"],
       items: {
         connect: [],
       },
@@ -668,8 +668,8 @@ async function main() {
         5: ["Destroy Undead"],
       }),
       buffsByLevel: JSON.stringify({}),
-      primaryAbilityScoreModifier: "WIS",
-      primarySpellAbilityScoreModifier: "WIS",
+      primaryAbilityScoreModifier: "Wisdom",
+      primarySpellAbilityScoreModifier: "Wisdom",
       subClassAvailableAtLevel: 1,
       unusableItems: [],
       fightingStyles: [],
@@ -1272,7 +1272,7 @@ async function main() {
         "Spear",
         "Herbalism Kit",
       ],
-      savingThrowProficiencies: ["INT", "WIS"],
+      savingThrowProficiencies: ["Intelligence", "Wisdom"],
       items: {
         connect: [],
       },
@@ -1302,8 +1302,8 @@ async function main() {
         2: ["Wild Shape"],
       }),
       buffsByLevel: JSON.stringify({}),
-      primaryAbilityScoreModifier: "WIS",
-      primarySpellAbilityScoreModifier: "WIS",
+      primaryAbilityScoreModifier: "Wisdom",
+      primarySpellAbilityScoreModifier: "Wisdom",
       rageDamageByLevel: JSON.stringify({}),
       spells: {
         connect: [
@@ -1703,7 +1703,7 @@ async function main() {
         "Simple Weapon",
         "Martial Weapon",
       ],
-      savingThrowProficiencies: ["STR", "CON"],
+      savingThrowProficiencies: ["Strength", "Constitution"],
       items: {
         connect: [],
       },
@@ -1733,7 +1733,7 @@ async function main() {
         1: ["Second Wind"],
       }),
       buffsByLevel: JSON.stringify({}),
-      primaryAbilityScoreModifier: "STR",
+      primaryAbilityScoreModifier: "Strength",
       primarySpellAbilityScoreModifier: null,
       rageDamageByLevel: JSON.stringify({}),
       spells: {
@@ -1902,7 +1902,7 @@ async function main() {
         15: ["Arcane Charge"],
         18: ["Improved War Magic"],
       }),
-      primarySpellAbilityScoreModifier: "INT",
+      primarySpellAbilityScoreModifier: "Intelligence",
       parentClass: {
         connect: { name: "Fighter" },
       },
@@ -1918,7 +1918,7 @@ async function main() {
         "A master of martial arts, harnessing the power of the body in pursuit of physical and spiritual perfection",
       hitDice: "D8",
       proficiencies: ["Simple Weapon", "Shortsword"],
-      savingThrowProficiencies: ["STR", "DEX"],
+      savingThrowProficiencies: ["Strength", "Dexterity"],
       items: {
         connect: [],
       },
@@ -1949,7 +1949,7 @@ async function main() {
         18: ["Empty Body"],
       }),
       buffsByLevel: JSON.stringify({}),
-      primaryAbilityScoreModifier: "DEX",
+      primaryAbilityScoreModifier: "Dexterity",
       primarySpellAbilityScoreModifier: null,
       rageDamageByLevel: JSON.stringify({}),
       spells: {
@@ -2106,7 +2106,7 @@ async function main() {
         "Simple Weapon",
         "Martial Weapon",
       ],
-      savingThrowProficiencies: ["WIS", "CHA"],
+      savingThrowProficiencies: ["Wisdom", "Charisma"],
       items: {
         connect: [],
       },
@@ -2138,8 +2138,8 @@ async function main() {
         14: ["Cleansing Touch"],
       }),
       buffsByLevel: JSON.stringify({}),
-      primaryAbilityScoreModifier: "STR",
-      primarySpellAbilityScoreModifier: "CHA",
+      primaryAbilityScoreModifier: "Strength",
+      primarySpellAbilityScoreModifier: "Charisma",
       rageDamageByLevel: JSON.stringify({}),
       spells: {
         connect: [
@@ -2417,7 +2417,7 @@ async function main() {
         "Simple Weapon",
         "Martial Weapon",
       ],
-      savingThrowProficiencies: ["STR", "DEX"],
+      savingThrowProficiencies: ["Strength", "Dexterity"],
       items: {
         connect: [],
       },
@@ -2448,8 +2448,8 @@ async function main() {
         10: ["Hide in Plain Sight"],
       }),
       buffsByLevel: JSON.stringify({}),
-      primaryAbilityScoreModifier: "DEX",
-      primarySpellAbilityScoreModifier: "WIS",
+      primaryAbilityScoreModifier: "Dexterity",
+      primarySpellAbilityScoreModifier: "Wisdom",
       rageDamageByLevel: JSON.stringify({}),
       spells: {
         connect: [
@@ -2679,7 +2679,7 @@ async function main() {
         "Shortsword",
         "Thieves' Tools",
       ],
-      savingThrowProficiencies: ["DEX", "INT"],
+      savingThrowProficiencies: ["Dexterity", "Intelligence"],
       items: {
         connect: [],
       },
@@ -2710,7 +2710,7 @@ async function main() {
         14: ["Blindsense"],
       }),
       buffsByLevel: JSON.stringify({}),
-      primaryAbilityScoreModifier: "DEX",
+      primaryAbilityScoreModifier: "Dexterity",
       primarySpellAbilityScoreModifier: null,
       rageDamageByLevel: JSON.stringify({}),
       spells: {
@@ -2888,7 +2888,7 @@ async function main() {
       abilitiesByLevel: JSON.stringify({
         17: ["Spell Thief"],
       }),
-      primarySpellAbilityScoreModifier: "INT",
+      primarySpellAbilityScoreModifier: "Intelligence",
       parentClass: {
         connect: { name: "Rogue" },
       },
@@ -2909,7 +2909,7 @@ async function main() {
         "Quarterstaff",
         "Light Crossbow",
       ],
-      savingThrowProficiencies: ["CON", "CHA"],
+      savingThrowProficiencies: ["Constitution", "Charisma"],
       items: {
         connect: [],
       },
@@ -2937,8 +2937,8 @@ async function main() {
       }),
       abilitiesByLevel: JSON.stringify({}),
       buffsByLevel: JSON.stringify({}),
-      primaryAbilityScoreModifier: "CHA",
-      primarySpellAbilityScoreModifier: "CHA",
+      primaryAbilityScoreModifier: "Charisma",
+      primarySpellAbilityScoreModifier: "Charisma",
       rageDamageByLevel: JSON.stringify({}),
       spells: {
         connect: [
@@ -3349,7 +3349,7 @@ async function main() {
         "A wielder of magic that is derived from a bargain with an extraplanar entity",
       hitDice: "D8",
       proficiencies: ["Light Armor", "Simple Weapon"],
-      savingThrowProficiencies: ["WIS", "CHA"],
+      savingThrowProficiencies: ["Wisdom", "Charisma"],
       items: {
         connect: [],
       },
@@ -3380,8 +3380,8 @@ async function main() {
         20: ["Eldritch Master"],
       }),
       buffsByLevel: JSON.stringify({}),
-      primaryAbilityScoreModifier: "CHA",
-      primarySpellAbilityScoreModifier: "CHA",
+      primaryAbilityScoreModifier: "Charisma",
+      primarySpellAbilityScoreModifier: "Charisma",
       rageDamageByLevel: JSON.stringify({}),
       spells: {
         connect: [
@@ -3746,7 +3746,7 @@ async function main() {
         "Quarterstaff",
         "Light Crossbow",
       ],
-      savingThrowProficiencies: ["INT", "WIS"],
+      savingThrowProficiencies: ["Intelligence", "Wisdom"],
       items: {
         connect: [],
       },
@@ -3774,8 +3774,8 @@ async function main() {
       }),
       abilitiesByLevel: JSON.stringify({}),
       buffsByLevel: JSON.stringify({}),
-      primaryAbilityScoreModifier: "INT",
-      primarySpellAbilityScoreModifier: "INT",
+      primaryAbilityScoreModifier: "Intelligence",
+      primarySpellAbilityScoreModifier: "Intelligence",
       spells: {
         connect: [
           { name: "Acid Splash" },

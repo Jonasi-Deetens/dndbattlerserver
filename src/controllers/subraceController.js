@@ -34,6 +34,12 @@ const getSubraceById = async (req, res) => {
       where: {
         id: parseInt(id),
       },
+      include: {
+        senses: true,
+        skills: true,
+        spells: true,
+        languages: true,
+      },
     });
 
     return res.status(201).json(subraceById);
