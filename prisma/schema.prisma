@@ -35,7 +35,8 @@ model Character {
   raceId            Int
   classId           Int
   subraceId         Int?
-  subclassId         Int?
+  subclassId        Int?
+  gender            String
   background        String?
   alignment         String
   primaryGoal       String
