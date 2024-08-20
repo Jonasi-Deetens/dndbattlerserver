@@ -368,6 +368,7 @@ model Item {
 model Race {
   id                    Int            @id @default(autoincrement())
   name                  String         @unique
+  description           String
   abilityScoreIncreases Json // JSON object to store ability score increases, e.g., { "Strength": 1, "Dexterity": 2 }
   statIncreases         Json // JSON object to store stat score increases, e.g., { "HP": 1 }
   adultAge              Int
@@ -392,6 +393,7 @@ model Race {
 model Subrace {
   id                    Int         @id @default(autoincrement())
   name                  String
+  description           String
   parentRaceId          Int
   parentRace            Race        @relation(fields: [parentRaceId], references: [id])
   abilityScoreIncreases Json // JSON object to store ability score increases, e.g., { "Strength": 1, "Dexterity": 2 }
