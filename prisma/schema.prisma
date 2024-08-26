@@ -54,7 +54,7 @@ model Character {
   kiPoints          Int
   sorceryPoints     Int
   invocationsKnown  Int
-  sneakAttack       Int
+  sneakAttack       String
   cantripsKnown     Int
   spellsKnown       Int
   fightingStyles    String[]
