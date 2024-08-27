@@ -91,6 +91,17 @@ model Character {
   memberships       Membership[]
 }
 
+model Field {
+  id              Int      @id @default(autoincrement())
+  type            String
+  positionX       Int
+  positionY       Int
+  isRoof          Boolean  @default(false)
+  isFloor         Boolean  @default(true)
+  isDestructible  Boolean  @default(false)
+  passable        Boolean  @default(true)
+}
+
 model Npc {
   id                Int            @id @default(autoincrement())
   name              String
