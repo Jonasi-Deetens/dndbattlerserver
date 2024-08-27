@@ -11,58 +11,249 @@ async function main() {
     }
   });
 
-  const fieldTypes = [
-    {
+  const fieldTypes = {
+    grass: {
       type: 'grass',
       isRoof: false,
       isFloor: true,
       isDestructible: false,
       passable: true
     },
-    {
-      type: 'ceiling',
-      isRoof: true,
-      isFloor: false,
+    path: {
+      type: 'path',
+      isRoof: false,
+      isFloor: true,
       isDestructible: false,
       passable: true
     },
-    {
-      type: 'wall',
-      isRoof: false,
-      isFloor: false,
-      isDestructible: false,
-      passable: false
-    },
-    {
+    water: {
       type: 'water',
       isRoof: false,
       isFloor: true,
       isDestructible: false,
       passable: false
     },
-    {
+    wall: {
+      type: 'wall',
+      isRoof: false,
+      isFloor: false,
+      isDestructible: false,
+      passable: false
+    },
+    mountain: {
+      type: 'mountain',
+      isRoof: false,
+      isFloor: false,
+      isDestructible: false,
+      passable: false
+    },
+    trap: {
       type: 'trap',
       isRoof: false,
       isFloor: true,
       isDestructible: true,
       passable: true
+    },
+    ceiling: {
+      type: 'ceiling',
+      isRoof: true,
+      isFloor: false,
+      isDestructible: false,
+      passable: true
     }
-  ];
+  };
 
   const fields = [];
-  for (let x = 0; x < 10; x++) {
-    for (let y = 0; y < 10; y++) {
-      const randomFieldType =
-        fieldTypes[Math.floor(Math.random() * fieldTypes.length)];
 
+  // Define the map size
+  const width = 15;
+  const height = 10;
+
+  // Define a basic layout
+  const mapLayout = [
+    [
+      'wall',
+      'wall',
+      'wall',
+      'wall',
+      'wall',
+      'wall',
+      'wall',
+      'wall',
+      'wall',
+      'wall',
+      'wall',
+      'wall',
+      'wall',
+      'wall',
+      'wall'
+    ],
+    [
+      'wall',
+      'grass',
+      'grass',
+      'path',
+      'path',
+      'grass',
+      'grass',
+      'water',
+      'water',
+      'grass',
+      'grass',
+      'path',
+      'path',
+      'grass',
+      'wall'
+    ],
+    [
+      'wall',
+      'grass',
+      'trap',
+      'path',
+      'path',
+      'grass',
+      'water',
+      'water',
+      'water',
+      'grass',
+      'path',
+      'trap',
+      'grass',
+      'grass',
+      'wall'
+    ],
+    [
+      'wall',
+      'grass',
+      'grass',
+      'path',
+      'path',
+      'grass',
+      'water',
+      'mountain',
+      'water',
+      'grass',
+      'path',
+      'path',
+      'grass',
+      'grass',
+      'wall'
+    ],
+    [
+      'wall',
+      'path',
+      'path',
+      'path',
+      'path',
+      'grass',
+      'water',
+      'mountain',
+      'water',
+      'grass',
+      'path',
+      'path',
+      'path',
+      'grass',
+      'wall'
+    ],
+    [
+      'wall',
+      'grass',
+      'grass',
+      'path',
+      'path',
+      'grass',
+      'water',
+      'mountain',
+      'water',
+      'grass',
+      'path',
+      'path',
+      'grass',
+      'grass',
+      'wall'
+    ],
+    [
+      'wall',
+      'grass',
+      'trap',
+      'path',
+      'path',
+      'grass',
+      'water',
+      'water',
+      'water',
+      'grass',
+      'path',
+      'trap',
+      'grass',
+      'grass',
+      'wall'
+    ],
+    [
+      'wall',
+      'grass',
+      'grass',
+      'path',
+      'path',
+      'grass',
+      'grass',
+      'water',
+      'water',
+      'grass',
+      'path',
+      'path',
+      'grass',
+      'grass',
+      'wall'
+    ],
+    [
+      'wall',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'grass',
+      'wall'
+    ],
+    [
+      'wall',
+      'wall',
+      'wall',
+      'wall',
+      'wall',
+      'wall',
+      'wall',
+      'wall',
+      'wall',
+      'wall',
+      'wall',
+      'wall',
+      'wall',
+      'wall',
+      'wall'
+    ]
+  ];
+
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      const type = mapLayout[y][x];
       fields.push({
-        type: randomFieldType.type,
+        type: fieldTypes[type].type,
         positionX: x,
         positionY: y,
-        isRoof: randomFieldType.isRoof,
-        isFloor: randomFieldType.isFloor,
-        isDestructible: randomFieldType.isDestructible,
-        passable: randomFieldType.passable,
+        isRoof: fieldTypes[type].isRoof,
+        isFloor: fieldTypes[type].isFloor,
+        isDestructible: fieldTypes[type].isDestructible,
+        passable: fieldTypes[type].passable,
         campaignId: campaign.id
       });
     }
@@ -72,7 +263,7 @@ async function main() {
     data: fields
   });
 
-  console.log('Seed data has been created successfully');
+  console.log('Realistic terrain map created successfully');
 }
 
 main()

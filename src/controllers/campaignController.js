@@ -4,7 +4,7 @@ const getCampaigns = async (req, res) => {
   try {
     const allCampaigns = await prisma.campaign.findMany({
       include: {
-        fields: true // Include the associated fields with each campaign
+        fields: true
       }
     });
 
