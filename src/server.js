@@ -14,6 +14,7 @@ import skillRouter from './routes/skillRoutes.js';
 import languageRouter from './routes/languageRoutes.js';
 import spellRouter from './routes/spellRoutes.js';
 import fieldRouter from './routes/fieldRoutes.js';
+import campaignRouter from './routes/campaignRoutes.js';
 
 dotenv.config();
 
@@ -33,6 +34,7 @@ app.use('/api/skills', skillRouter);
 app.use('/api/languages', languageRouter);
 app.use('/api/spells', spellRouter);
 app.use('/api/fields', fieldRouter);
+app.use('/api/campaigns', campaignRouter);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

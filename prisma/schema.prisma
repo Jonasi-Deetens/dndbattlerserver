@@ -23,6 +23,7 @@ model User {
 model Campaign {
   id   String @id @default(uuid())
   name String
+  fields Field[]
   npcs Npc[]
 }
 
@@ -100,6 +101,8 @@ model Field {
   isFloor         Boolean  @default(true)
   isDestructible  Boolean  @default(false)
   passable        Boolean  @default(true)
+  campaignId      String
+  campaign        Campaign @relation(fields: [campaignId], references: [id])
 }
 
 model Npc {

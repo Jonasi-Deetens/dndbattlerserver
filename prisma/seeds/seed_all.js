@@ -69,6 +69,14 @@ exec('node language_seed.js', (err, stdout, stderr) => {
                       process.exit(1);
                     }
                     console.log(`Abilities seeded: ${stdout}`);
+
+                    exec('node campaign_seed.js', (err, stdout, stderr) => {
+                      if (err) {
+                        console.error(`Error seeding campaign: ${stderr}`);
+                        process.exit(1);
+                      }
+                      console.log(`Campaign seeded: ${stdout}`);
+                    });
                   });
                 });
               });
