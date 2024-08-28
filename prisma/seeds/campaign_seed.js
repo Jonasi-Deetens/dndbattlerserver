@@ -60,189 +60,89 @@ async function main() {
       isFloor: false,
       isDestructible: false,
       passable: true
+    },
+    floor: {
+      type: 'floor',
+      isRoof: false,
+      isFloor: true,
+      isDestructible: false,
+      passable: true
+    },
+    'top-left-corner': {
+      type: 'top-left-corner',
+      isRoof: false,
+      isFloor: false,
+      isDestructible: false,
+      passable: true
+    },
+    'top-right-corner': {
+      type: 'top-right-corner',
+      isRoof: false,
+      isFloor: false,
+      isDestructible: false,
+      passable: true
+    },
+    'bottom-left-corner': {
+      type: 'bottom-left-corner',
+      isRoof: false,
+      isFloor: false,
+      isDestructible: false,
+      passable: true
+    },
+    'bottom-right-corner': {
+      type: 'bottom-right-corner',
+      isRoof: false,
+      isFloor: false,
+      isDestructible: false,
+      passable: true
     }
   };
 
   const fields = [];
 
   // Define the map size
-  const width = 15;
-  const height = 10;
+  const width = 300;
+  const height = 200;
 
-  // Define a basic layout
-  const mapLayout = [
-    [
-      'wall',
-      'wall',
-      'wall',
-      'wall',
-      'wall',
-      'wall',
-      'wall',
-      'wall',
-      'wall',
-      'wall',
-      'wall',
-      'wall',
-      'wall',
-      'wall',
-      'wall'
-    ],
-    [
-      'wall',
-      'grass',
-      'grass',
-      'path',
-      'path',
-      'grass',
-      'grass',
-      'water',
-      'water',
-      'grass',
-      'grass',
-      'path',
-      'path',
-      'grass',
-      'wall'
-    ],
-    [
-      'wall',
-      'grass',
-      'trap',
-      'path',
-      'path',
-      'grass',
-      'water',
-      'water',
-      'water',
-      'grass',
-      'path',
-      'trap',
-      'grass',
-      'grass',
-      'wall'
-    ],
-    [
-      'wall',
-      'grass',
-      'grass',
-      'path',
-      'path',
-      'grass',
-      'water',
-      'mountain',
-      'water',
-      'grass',
-      'path',
-      'path',
-      'grass',
-      'grass',
-      'wall'
-    ],
-    [
-      'wall',
-      'path',
-      'path',
-      'path',
-      'path',
-      'grass',
-      'water',
-      'mountain',
-      'water',
-      'grass',
-      'path',
-      'path',
-      'path',
-      'grass',
-      'wall'
-    ],
-    [
-      'wall',
-      'grass',
-      'grass',
-      'path',
-      'path',
-      'grass',
-      'water',
-      'mountain',
-      'water',
-      'grass',
-      'path',
-      'path',
-      'grass',
-      'grass',
-      'wall'
-    ],
-    [
-      'wall',
-      'grass',
-      'trap',
-      'path',
-      'path',
-      'grass',
-      'water',
-      'water',
-      'water',
-      'grass',
-      'path',
-      'trap',
-      'grass',
-      'grass',
-      'wall'
-    ],
-    [
-      'wall',
-      'grass',
-      'grass',
-      'path',
-      'path',
-      'grass',
-      'grass',
-      'water',
-      'water',
-      'grass',
-      'path',
-      'path',
-      'grass',
-      'grass',
-      'wall'
-    ],
-    [
-      'wall',
-      'grass',
-      'grass',
-      'grass',
-      'grass',
-      'grass',
-      'grass',
-      'grass',
-      'grass',
-      'grass',
-      'grass',
-      'grass',
-      'grass',
-      'grass',
-      'wall'
-    ],
-    [
-      'wall',
-      'wall',
-      'wall',
-      'wall',
-      'wall',
-      'wall',
-      'wall',
-      'wall',
-      'wall',
-      'wall',
-      'wall',
-      'wall',
-      'wall',
-      'wall',
-      'wall'
-    ]
-  ];
+  // Function to generate a row based on proximity to edges (e.g., walls on the borders)
+  const generateRow = y => {
+    const row = [];
+    for (let x = 0; x < width; x++) {
+      if (y === 0 && x === 0) {
+        row.push('top-left-corner');
+      } else if (y === 0 && x === width - 1) {
+        row.push('top-right-corner');
+      } else if (y === height - 1 && x === 0) {
+        row.push('bottom-left-corner');
+      } else if (y === height - 1 && x === width - 1) {
+        row.push('bottom-right-corner');
+      } else if (y === 0 || y === height - 1 || x === 0 || x === width - 1) {
+        // Walls on the borders
+        row.push('wall');
+      } else if (Math.random() < 0.1) {
+        row.push('water');
+      } else if (Math.random() < 0.1) {
+        row.push('mountain');
+      } else if (Math.random() < 0.05) {
+        row.push('trap');
+      } else if (Math.random() < 0.2) {
+        row.push('path');
+      } else if (Math.random() < 0.2) {
+        row.push('floor');
+      } else {
+        row.push('grass');
+      }
+    }
+    return row;
+  };
 
+  // Generate the map layout
+  const mapLayout = [];
+  for (let y = 0; y < height; y++) {
+    mapLayout.push(generateRow(y));
+  }
+
+  // Create the fields based on the layout
   for (let y = 0; y < height; y++) {
     for (let x = 0; x < width; x++) {
       const type = mapLayout[y][x];
@@ -263,7 +163,7 @@ async function main() {
     data: fields
   });
 
-  console.log('Realistic terrain map created successfully');
+  console.log('Large terrain map (300x200) created successfully');
 }
 
 main()
