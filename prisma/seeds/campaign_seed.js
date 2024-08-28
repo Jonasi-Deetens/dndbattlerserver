@@ -95,6 +95,20 @@ async function main() {
       isFloor: false,
       isDestructible: false,
       passable: true
+    },
+    'bottom-wall': {
+      type: 'bottom-wall',
+      isRoof: false,
+      isFloor: false,
+      isDestructible: false,
+      passable: true
+    },
+    'top-wall': {
+      type: 'top-wall',
+      isRoof: false,
+      isFloor: false,
+      isDestructible: false,
+      passable: true
     }
   };
 
@@ -116,6 +130,10 @@ async function main() {
         row.push('bottom-left-corner');
       } else if (y === height - 1 && x === width - 1) {
         row.push('bottom-right-corner');
+      } else if (y === 0) {
+        row.push('top-wall');
+      } else if (y === height - 1) {
+        row.push('bottom-wall');
       } else if (y === 0 || y === height - 1 || x === 0 || x === width - 1) {
         // Walls on the borders
         row.push('wall');
