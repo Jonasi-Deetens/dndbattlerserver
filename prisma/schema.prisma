@@ -101,6 +101,7 @@ model Field {
   isFloor         Boolean  @default(true)
   isDestructible  Boolean  @default(false)
   passable        Boolean  @default(true)
+  seeThrough      Boolean  @default(true)
   campaignId      String
   campaign        Campaign @relation(fields: [campaignId], references: [id])
 }
