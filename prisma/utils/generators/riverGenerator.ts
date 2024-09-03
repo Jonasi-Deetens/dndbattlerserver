@@ -217,7 +217,11 @@ const determineWaterType = (
   return 'water';
 };
 
-const adjustWaterTiles = (map: string[][], width: number, height: number) => {
+export const adjustWaterTiles = (
+  map: string[][],
+  width: number,
+  height: number
+) => {
   for (let y = 0; y < height; y++) {
     for (let x = 0; x < width; x++) {
       if (map[y][x] === 'water') {
@@ -231,20 +235,41 @@ export const createRiver = (map: string[][], width: number, height: number) => {
   let x = Math.floor(Math.random() * width);
   let y = 0;
 
-  while (y < height) {
-    map[y][x] = 'water'; // Set initial tile as generic water
+  // Start with the initial water placement
+  map[y][x] = 'water';
 
-    // Randomly decide direction, preferring downward flow
+  while (y < height - 1) {
+    // Determine next move: prefer downward, but randomly adjust left or right
     const direction = Math.random();
-    if (direction < 0.4 && x > 0) x--; // Move left
-    else if (direction < 0.8 && x < width - 1) x++; // Move right
 
-    y++; // Always move down
-    if (y < height) {
-      map[y][x] = 'water'; // Continue placing generic water
+    // Ensure movement remains within bounds and adds connectivity
+    if (direction < 0.3 && x > 0) {
+      x--; // Move left
+    } else if (direction < 0.6 && x < width - 1) {
+      x++; // Move right
+    }
+
+    // Always move down to maintain the river's flow
+    y++;
+
+    // Set the current cell to water
+    map[y][x] = 'water';
+
+    // To ensure connectivity, make sure at least one adjacent cell is also water
+    if (x > 0 && map[y][x - 1] !== 'water') {
+      map[y][x - 1] = 'water'; // Ensure left is water if possible
+    }
+    if (x < width - 1 && map[y][x + 1] !== 'water') {
+      map[y][x + 1] = 'water'; // Ensure right is water if possible
+    }
+    if (y > 0 && map[y - 1][x] !== 'water') {
+      map[y - 1][x] = 'water'; // Ensure above is water
+    }
+    if (y < height - 1 && map[y + 1][x] !== 'water') {
+      map[y + 1][x] = 'water'; // Ensure below is water
     }
   }
-  // Adjust water tiles after initial creation
-  adjustWaterTiles(map, width, height);
-  console.log(`Created a river starting at (${x}, 0).`);
+
+  // Adjust water types for aesthetics or further game logic
+  console.log(`Created a river that flows down with connected water tiles.`);
 };

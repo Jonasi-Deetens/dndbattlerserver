@@ -1,9 +1,15 @@
 import { PrismaClient, Prisma } from '@prisma/client';
 import dotenv from 'dotenv';
 import { fieldTypes } from '../models/fieldTypes.js';
-import { createRiver } from '../utils/generators/riverGenerator.js';
+import {
+  adjustWaterTiles,
+  createRiver
+} from '../utils/generators/riverGenerator.js';
 import { createCastle } from '../utils/generators/castleGenerator.js';
-import { generateBiomeClusters } from '../utils/generators/biomeGenerator.js';
+import {
+  adjustWallTiles,
+  generateBiomeClusters
+} from '../utils/generators/biomeGenerator.js';
 import { createMainPath } from '../utils/generators/pathGenerator.js';
 
 dotenv.config();
@@ -18,8 +24,8 @@ async function main() {
   });
 
   const fields: Prisma.FieldUncheckedCreateInput[] = [];
-  const width = 300;
-  const height = 200;
+  const width = 240;
+  const height = 160;
 
   // Function to scatter bushes and traps randomly
   const scatterItems = (map: string[][], type: string, count: number) => {
@@ -28,7 +34,7 @@ async function main() {
       let x = Math.floor(Math.random() * width);
       let y = Math.floor(Math.random() * height);
       if (map[y][x] === 'grass') {
-        map[y][x] = type; // Only place on grass
+        map[y][x] = type;
         scattered++;
       }
     }
@@ -45,18 +51,18 @@ async function main() {
 
     // Set borders
     for (let x = 0; x < width; x++) {
-      map[0][x] = 'top-wall';
-      map[height - 1][x] = 'bottom-wall';
+      map[0][x] = 'wall';
+      map[height - 1][x] = 'wall';
     }
     for (let y = 0; y < height; y++) {
-      map[y][0] = 'left-wall';
-      map[y][width - 1] = 'right-wall';
+      map[y][0] = 'wall';
+      map[y][width - 1] = 'wall';
     }
 
-    map[0][0] = 'top-left-corner';
-    map[0][width - 1] = 'top-right-corner';
-    map[height - 1][0] = 'bottom-left-corner';
-    map[height - 1][width - 1] = 'bottom-right-corner';
+    map[0][0] = 'wall';
+    map[0][width - 1] = 'wall';
+    map[height - 1][0] = 'wall';
+    map[height - 1][width - 1] = 'wall';
 
     // Create the main path
     createMainPath(map, width, height);
@@ -75,6 +81,8 @@ async function main() {
     scatterItems(map, 'bush', 100); // Scatter bushes
     scatterItems(map, 'trap', 50); // Scatter traps
 
+    adjustWaterTiles(map, width, height);
+    adjustWallTiles(map, width, height);
     return map;
   };
 

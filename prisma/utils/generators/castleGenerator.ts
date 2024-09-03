@@ -23,10 +23,10 @@ export const createCastle = (
     }
   }
 
-  map[y][x] = 'top-left-corner';
-  map[y][x + castleWidth - 1] = 'top-right-corner';
-  map[y + castleHeight - 1][x] = 'bottom-left-corner';
-  map[y + castleHeight - 1][x + castleWidth - 1] = 'bottom-right-corner';
+  map[y][x] = 'wall';
+  map[y][x + castleWidth - 1] = 'wall';
+  map[y + castleHeight - 1][x] = 'wall';
+  map[y + castleHeight - 1][x + castleWidth - 1] = 'wall';
   console.log(
     `Created a castle at (${x}, ${y}) with size ${castleWidth}x${castleHeight}.`
   );

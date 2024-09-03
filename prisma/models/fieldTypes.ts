@@ -6,6 +6,7 @@ interface FieldType {
   passable: boolean;
   seeThrough: boolean;
 }
+
 type FieldTypes = Record<string, FieldType>;
 
 export const fieldTypes: FieldTypes = {
@@ -411,6 +412,374 @@ export const fieldTypes: FieldTypes = {
   },
   wall: {
     type: 'wall',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-bottom': {
+    type: 'wall-bottom',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-top': {
+    type: 'wall-top',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-left': {
+    type: 'wall-left',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-right': {
+    type: 'wall-right',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-horizontal': {
+    type: 'wall-horizontal',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-vertical': {
+    type: 'wall-vertical',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-corner-bottom-left': {
+    type: 'wall-corner-bottom-left',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-corner-bottom-right': {
+    type: 'wall-corner-bottom-right',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-corner-top-left': {
+    type: 'wall-corner-top-left',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-corner-top-right': {
+    type: 'wall-corner-top-right',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-corner-link-bottom-left': {
+    type: 'wall-corner-link-bottom-left',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-corner-link-bottom-right': {
+    type: 'wall-corner-link-bottom-right',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-corner-link-top-left': {
+    type: 'wall-corner-link-top-left',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-corner-link-top-right': {
+    type: 'wall-corner-link-top-right',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-link-top-right': {
+    type: 'wall-link-top-right',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-link-top-left': {
+    type: 'wall-link-top-left',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-link-bottom-right': {
+    type: 'wall-link-bottom-right',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-link-bottom-left': {
+    type: 'wall-link-bottom-left',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-all': {
+    type: 'wall-all',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-bottom-link-left': {
+    type: 'wall-bottom-link-left',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-bottom-link-right': {
+    type: 'wall-bottom-link-right',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-bottom-links': {
+    type: 'wall-bottom-links',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-left-link-bottom': {
+    type: 'wall-left-link-bottom',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-left-links': {
+    type: 'wall-left-links',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-left-link-top': {
+    type: 'wall-left-link-top',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-link-corner-bottom-left': {
+    type: 'wall-link-corner-bottom-left',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-link-corner-bottom-right': {
+    type: 'wall-link-corner-bottom-right',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-link-corner-top-left': {
+    type: 'wall-link-corner-top-left',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-link-corner-top-right': {
+    type: 'wall-link-corner-top-right',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-links-all': {
+    type: 'wall-links-all',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-links-bottom': {
+    type: 'wall-links-bottom',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-links-diagonal-down': {
+    type: 'wall-links-diagonal-down',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-links-diagonal-up': {
+    type: 'wall-links-diagonal-up',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-links-left': {
+    type: 'wall-links-left',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-links-right': {
+    type: 'wall-links-right',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-links-top': {
+    type: 'wall-links-top',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-right-link-bottom': {
+    type: 'wall-right-link-bottom',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-right-links': {
+    type: 'wall-right-links',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-right-link-top': {
+    type: 'wall-right-link-top',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-top-link-left': {
+    type: 'wall-top-link-left',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-top-link-right': {
+    type: 'wall-top-link-right',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-top-links': {
+    type: 'wall-top-links',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-top-end': {
+    type: 'wall-top-end',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-left-end': {
+    type: 'wall-left-end',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-right-end': {
+    type: 'wall-right-end',
+    isRoof: false,
+    isFloor: false,
+    isDestructible: false,
+    passable: false,
+    seeThrough: false
+  },
+  'wall-bottom-end': {
+    type: 'wall-bottom-end',
     isRoof: false,
     isFloor: false,
     isDestructible: false,

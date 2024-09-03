@@ -3,10 +3,15 @@ export const createMainPath = (
   width: number,
   height: number
 ) => {
+  // Ensure map is correctly initialized
+  if (!map || map.length !== height || map.some(row => row.length !== width)) {
+    throw new Error('Map dimensions do not match specified width and height.');
+  }
+
   // Starting point
   let x = Math.floor(Math.random() * width);
   let y = 0;
-  map[x][y] = 'path';
+  map[y][x] = 'path'; // Use map[y][x] for correct indexing
 
   // Create main path
   while (y < height - 1) {
@@ -15,19 +20,19 @@ export const createMainPath = (
       x += Math.random() > 0.5 ? 1 : -1;
 
       if (x >= 0 && x < width) {
-        map[x][y] = 'path';
+        map[y][x] = 'path';
       }
 
       y += 1;
       if (y >= 0 && y < height) {
-        map[x][y] = 'path';
+        map[y][x] = 'path';
       }
     } else {
-      // Move up in the y direction
+      // Move down in the y direction
       y += 1;
 
       if (y >= 0 && y < height) {
-        map[x][y] = 'path';
+        map[y][x] = 'path';
       }
 
       // Optionally move left or right
@@ -35,7 +40,7 @@ export const createMainPath = (
         x += Math.random() > 0.5 ? 1 : -1;
 
         if (x >= 0 && x < width) {
-          map[x][y] = 'path';
+          map[y][x] = 'path';
         }
       }
     }
