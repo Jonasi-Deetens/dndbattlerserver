@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import authRouter from './routes/authRoutes.js';
 import cors from 'cors';
+import upload from './config/multer.js';
 import characterRouter from './routes/characterRoutes.js';
 import classRouter from './routes/classRoutes.js';
 import subraceRouter from './routes/subraceRoutes.js';
@@ -15,7 +16,6 @@ import languageRouter from './routes/languageRoutes.js';
 import spellRouter from './routes/spellRoutes.js';
 import fieldRouter from './routes/fieldRoutes.js';
 import campaignRouter from './routes/campaignRoutes.js';
-
 dotenv.config();
 
 const app: Application = express();
@@ -35,6 +35,17 @@ app.use('/api/languages', languageRouter);
 app.use('/api/spells', spellRouter);
 app.use('/api/fields', fieldRouter);
 app.use('/api/campaigns', campaignRouter);
+
+app.post('/upload', upload.single('image'), (req, res) => {
+  if (req.file) {
+    res.json({
+      message: 'Image uploaded successfully',
+      imageUrl: req.file.path,
+    });
+  } else {
+    res.status(400).json({ error: 'Failed to upload image' });
+  }
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

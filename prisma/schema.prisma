@@ -94,16 +94,32 @@ model Character {
 
 model Field {
   id              Int      @id @default(autoincrement())
-  type            String
+  tileId          Int
+  tile            Tile     @relation(fields: [tileId], references: [id])
   positionX       Int
   positionY       Int
+  campaignId      String
+  campaign        Campaign @relation(fields: [campaignId], references: [id])
+}
+
+model Tile {
+  id              Int      @id @default(autoincrement())
+  name            String   @unique
+  tileTypeId      Int
+  tileType        TileType @relation(fields: [tileTypeId], references: [id])
+  imageUrl        String
+  fields          Field[]
+}
+
+model TileType {
+  id              Int      @id @default(autoincrement())
+  name            String   @unique
   isRoof          Boolean  @default(false)
   isFloor         Boolean  @default(true)
   isDestructible  Boolean  @default(false)
   passable        Boolean  @default(true)
   seeThrough      Boolean  @default(true)
-  campaignId      String
-  campaign        Campaign @relation(fields: [campaignId], references: [id])
+  tiles           Tile[]
 }
 
 model Npc {
