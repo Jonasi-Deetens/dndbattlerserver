@@ -7,6 +7,7 @@ const prismaClient = new PrismaClient();
 
 // Mapping of file name keywords to TileType names
 const TILE_TYPE_MAP = {
+  sky: 'sky',
   arch: 'arch',
   door: 'door',
   board: 'board',
@@ -49,9 +50,7 @@ async function uploadImagesAndPopulateModels() {
       });
     }
 
-    const publicId = `tiles/${path
-      .basename(file, path.extname(file))
-      .toLowerCase()}`; // Generate a consistent public_id
+    const publicId = `${path.basename(file, path.extname(file)).toLowerCase()}`; // Generate a consistent public_id
 
     // Fetch the URL of the existing image by publicId
     const imageUrl = `https://res.cloudinary.com/${process.env.CLOUDINARY_NAME}/image/upload/${publicId}`;
