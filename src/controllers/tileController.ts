@@ -3,7 +3,9 @@ import prisma from '../prisma.js';
 
 const getTiles = async (req: Request, res: Response) => {
   try {
-    const allTiles = await prisma.tile.findMany();
+    const allTiles = await prisma.tile.findMany({
+      include: { tileType: true }
+    });
 
     return res.status(201).json(allTiles);
   } catch (error) {

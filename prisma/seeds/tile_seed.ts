@@ -20,7 +20,7 @@ const TILE_TYPE_MAP = {
   floor: 'floor',
   path: 'path',
   wall: 'wall',
-  shadow: 'shadow',
+  shadow: 'shadow'
 };
 
 async function uploadImagesAndPopulateModels() {
@@ -40,13 +40,13 @@ async function uploadImagesAndPopulateModels() {
     console.log('Setting TileType - ', tileTypeName);
     // Check if TileType already exists in the database, if not, create it
     let tileType = await prismaClient.tileType.findUnique({
-      where: { name: tileTypeName },
+      where: { name: tileTypeName }
     });
     if (!tileType) {
       tileType = await prismaClient.tileType.create({
         data: {
-          name: tileTypeName,
-        },
+          name: tileTypeName
+        }
       });
     }
 
@@ -57,7 +57,7 @@ async function uploadImagesAndPopulateModels() {
 
     // Check if the Tile already exists in the database by name
     const existingTile = await prismaClient.tile.findUnique({
-      where: { name: path.basename(file, path.extname(file)) },
+      where: { name: path.basename(file, path.extname(file)) }
     });
 
     if (existingTile) {
@@ -72,8 +72,8 @@ async function uploadImagesAndPopulateModels() {
         data: {
           name: path.basename(file, path.extname(file)), // Use the file name without extension
           imageUrl: imageUrl,
-          tileTypeId: tileType.id,
-        },
+          tileTypeId: tileType.id
+        }
       });
 
       console.log(`Created tile with type ${tileTypeName} for ${file}.`);

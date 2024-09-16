@@ -94,10 +94,26 @@ model Character {
 
 model Field {
   id              Int      @id @default(autoincrement())
-  tileId          Int
-  tile            Tile     @relation(fields: [tileId], references: [id])
-  positionX       Int
-  positionY       Int
+  floorTileId     Int?     
+  floorTile       Tile?    @relation("FloorTile", fields: [floorTileId], references: [id])
+
+  wallTileId      Int?    
+  wallTile        Tile?    @relation("WallTile", fields: [wallTileId], references: [id])
+
+  detailTileId    Int?     
+  detailTile      Tile?    @relation("DetailTile", fields: [detailTileId], references: [id])
+
+  objectTileId    Int?     
+  objectTile      Tile?    @relation("ObjectTile", fields: [objectTileId], references: [id])
+
+  roofTileId      Int?   
+  roofTile        Tile?    @relation("RoofTile", fields: [roofTileId], references: [id])
+
+  overlayTileId   Int?     
+  overlayTile     Tile?    @relation("OverlayTile", fields: [overlayTileId], references: [id])
+
+  x               Int
+  y               Int
   campaignId      String
   campaign        Campaign @relation(fields: [campaignId], references: [id])
 }
@@ -108,12 +124,19 @@ model Tile {
   tileTypeId      Int
   tileType        TileType @relation(fields: [tileTypeId], references: [id])
   imageUrl        String
-  fields          Field[]
+  
+  fieldsFloor    Field[]   @relation("FloorTile")
+  fieldsWall     Field[]   @relation("WallTile")
+  fieldsDetail   Field[]   @relation("DetailTile")
+  fieldsObject   Field[]   @relation("ObjectTile")
+  fieldsRoof     Field[]   @relation("RoofTile")
+  fieldsOverlay  Field[]   @relation("OverlayTile")
 }
 
 model TileType {
   id              Int      @id @default(autoincrement())
   name            String   @unique
+  layer           Layer    @default(FLOOR)  // Values: 'floor', 'object', 'roof', 'overlay'
   isRoof          Boolean  @default(false)
   isFloor         Boolean  @default(true)
   isDestructible  Boolean  @default(false)
@@ -444,4 +467,13 @@ model Subrace {
   disadvantages         String[] // E.g. 'poison' -- This is for saving throws
   characters            Character[]
   npcs                  Npc[]
+}
+
+enum Layer {
+  FLOOR
+  WALL
+  DETAIL
+  OBJECT
+  ROOF
+  OVERLAY
 }
