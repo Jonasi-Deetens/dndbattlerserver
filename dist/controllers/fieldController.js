@@ -35,7 +35,7 @@ import prisma from '../prisma.js';
 const getFields = (req, res) =>
   __awaiter(void 0, void 0, void 0, function* () {
     try {
-      const allFields = yield prisma.field.findMany();
+      const allFields = yield prisma.map.findMany();
       return res.status(201).json(allFields);
     } catch (error) {
       return res.status(500).json({ msg: 'Server error' });

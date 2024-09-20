@@ -1,41 +1,16 @@
 import path from 'path';
-import prisma from '@prisma/client';
+import prisma, { Layer } from '@prisma/client';
 import { tileNames } from '../utils/tileNames.js';
 
 const { PrismaClient } = prisma;
 const prismaClient = new PrismaClient();
 
-// Mapping of file name keywords to TileType names
-const TILE_TYPE_MAP = {
-  sky: 'sky',
-  arch: 'arch',
-  door: 'door',
-  board: 'board',
-  border: 'border',
-  screen: 'screen',
-  bar: 'bar',
-  carpet: 'carpet',
-  ladder: 'ladder',
-  stairs: 'stairs',
-  floor: 'floor',
-  path: 'path',
-  wall: 'wall',
-  shadow: 'shadow'
-};
-
 async function uploadImagesAndPopulateModels() {
   // Read all files in the image folder
   for (const file of tileNames) {
-    // Determine the TileType by checking the file name against the TILE_TYPE_MAP
-    const tileTypeKey = Object.keys(TILE_TYPE_MAP).find(key =>
-      file.toLowerCase().includes(key)
-    );
-    const tileTypeName = tileTypeKey ? TILE_TYPE_MAP[tileTypeKey] : null;
-
-    if (!tileTypeName) {
-      console.log(`Skipping ${file}, no matching TileType found.`);
-      continue;
-    }
+    if (file.includes('DS_Store')) continue;
+    console.log(file);
+    const tileTypeName = path.basename(file, path.extname(file)).split('-')[1];
 
     console.log('Setting TileType - ', tileTypeName);
     // Check if TileType already exists in the database, if not, create it
@@ -45,7 +20,8 @@ async function uploadImagesAndPopulateModels() {
     if (!tileType) {
       tileType = await prismaClient.tileType.create({
         data: {
-          name: tileTypeName
+          name: tileTypeName,
+          properties: {}
         }
       });
     }
@@ -72,7 +48,11 @@ async function uploadImagesAndPopulateModels() {
         data: {
           name: path.basename(file, path.extname(file)), // Use the file name without extension
           imageUrl: imageUrl,
-          tileTypeId: tileType.id
+          tileTypeId: tileType.id,
+          layer: path
+            .basename(file, path.extname(file))
+            .split('-')[0]
+            .toUpperCase() as Layer
         }
       });
 
